@@ -1,0 +1,309 @@
+#NEXUS
+[R-package APE, Fri Jan 07 14:21:55 2022]
+
+BEGIN TAXA;
+	DIMENSIONS NTAX = 148;
+	TAXLABELS
+		Eleutherodactylus_abbotti
+		Eleutherodactylus_acmonis
+		Eleutherodactylus_adelus
+		Eleutherodactylus_albipes
+		Eleutherodactylus_alcoae
+		Eleutherodactylus_alticola
+		Eleutherodactylus_amadeus
+		Eleutherodactylus_amplinympha
+		Eleutherodactylus_andrewsi
+		Eleutherodactylus_antillensis
+		Eleutherodactylus_aporostegus
+		Eleutherodactylus_apostates
+		Eleutherodactylus_armstrongi
+		Eleutherodactylus_atkinsi
+		Eleutherodactylus_audanti
+		Eleutherodactylus_auriculatoides
+		Eleutherodactylus_auriculatus
+		Eleutherodactylus_bakeri
+		Eleutherodactylus_barlagnei
+		Eleutherodactylus_bartonsmithi
+		Eleutherodactylus_blairhedgesi
+		Eleutherodactylus_bothroboans
+		Eleutherodactylus_bresslerae
+		Eleutherodactylus_brevirostris
+		Eleutherodactylus_brittoni
+		Eleutherodactylus_caribe
+		Eleutherodactylus_casparii
+		Eleutherodactylus_cavernicola
+		Eleutherodactylus_chlorophenax
+		Eleutherodactylus_cochranae
+		Eleutherodactylus_cooki
+		Eleutherodactylus_coqui
+		Eleutherodactylus_corona
+		Eleutherodactylus_counouspeus
+		Eleutherodactylus_cubanus
+		Eleutherodactylus_cundalli
+		Eleutherodactylus_cuneatus
+		Eleutherodactylus_darlingtoni
+		Eleutherodactylus_dimidiatus
+		Eleutherodactylus_diplasius
+		Eleutherodactylus_dolomedes
+		Eleutherodactylus_eileenae
+		Eleutherodactylus_emiliae
+		Eleutherodactylus_eneidae
+		Eleutherodactylus_etheridgei
+		Eleutherodactylus_eunaster
+		Eleutherodactylus_feichtingeri
+		Eleutherodactylus_flavescens
+		Eleutherodactylus_fowleri
+		Eleutherodactylus_furcyensis
+		Eleutherodactylus_fuscus
+		Eleutherodactylus_glamyrus
+		Eleutherodactylus_glandulifer
+		Eleutherodactylus_glanduliferoides
+		Eleutherodactylus_glaphycompus
+		Eleutherodactylus_glaucoreius
+		Eleutherodactylus_goini
+		Eleutherodactylus_gossei
+		Eleutherodactylus_grabhami
+		Eleutherodactylus_grahami
+		Eleutherodactylus_greyi
+		Eleutherodactylus_griphus
+		Eleutherodactylus_gryllus
+		Eleutherodactylus_guanahacabibe
+		Eleutherodactylus_guantanamera
+		Eleutherodactylus_gundlachi
+		Eleutherodactylus_haitianus
+		Eleutherodactylus_hedricki
+		Eleutherodactylus_heminota
+		Eleutherodactylus_hypostenor
+		Eleutherodactylus_iberia
+		Eleutherodactylus_inoptatus
+		Eleutherodactylus_intermedius
+		Eleutherodactylus_ionthus
+		Eleutherodactylus_jamaicensis
+		Eleutherodactylus_jaumei
+		Eleutherodactylus_johnstonei
+		Eleutherodactylus_juanariveroi
+		Eleutherodactylus_jugans
+		Eleutherodactylus_junori
+		Eleutherodactylus_klinikowskii
+		Eleutherodactylus_lamprotes
+		Eleutherodactylus_leberi
+		Eleutherodactylus_lentus
+		Eleutherodactylus_leoncei
+		Eleutherodactylus_limbatus
+		Eleutherodactylus_locustus
+		Eleutherodactylus_luteolus
+		Eleutherodactylus_maestrensis
+		Eleutherodactylus_mariposa
+		Eleutherodactylus_martinicensis
+		Eleutherodactylus_melacara
+		Eleutherodactylus_minutus
+		Eleutherodactylus_monensis
+		Eleutherodactylus_montanus
+		Eleutherodactylus_nortoni
+		Eleutherodactylus_notidodes
+		Eleutherodactylus_nubicola
+		Eleutherodactylus_orcutti
+		Eleutherodactylus_orientalis
+		Eleutherodactylus_oxyrhyncus
+		Eleutherodactylus_pantoni
+		Eleutherodactylus_parabates
+		Eleutherodactylus_parapelates
+		Eleutherodactylus_patriciae
+		Eleutherodactylus_paulsoni
+		Eleutherodactylus_pentasyringos
+		Eleutherodactylus_pezopetrus
+		Eleutherodactylus_pictissimus
+		Eleutherodactylus_pinarensis
+		Eleutherodactylus_pinchoni
+		Eleutherodactylus_pituinus
+		Eleutherodactylus_planirostris
+		Eleutherodactylus_poolei
+		Eleutherodactylus_portoricensis
+		Eleutherodactylus_principalis
+		Eleutherodactylus_probolaeus
+		Eleutherodactylus_rhodesi
+		Eleutherodactylus_richmondi
+		Eleutherodactylus_ricordii
+		Eleutherodactylus_riparius
+		Eleutherodactylus_rivularis
+		Eleutherodactylus_rogersi
+		Eleutherodactylus_ronaldi
+		Eleutherodactylus_rucillensis
+		Eleutherodactylus_rufifemoralis
+		Eleutherodactylus_ruthae
+		Eleutherodactylus_schmidti
+		Eleutherodactylus_schwartzi
+		Eleutherodactylus_sciagraphus
+		Eleutherodactylus_simulans
+		Eleutherodactylus_sisyphodemus
+		Eleutherodactylus_sommeri
+		Eleutherodactylus_symingtoni
+		Eleutherodactylus_thomasi
+		Eleutherodactylus_thorectes
+		Eleutherodactylus_toa
+		Eleutherodactylus_tonyi
+		Eleutherodactylus_turquinensis
+		Eleutherodactylus_unicolor
+		Eleutherodactylus_varians
+		Eleutherodactylus_varleyi
+		Eleutherodactylus_ventrilineatus
+		Eleutherodactylus_weinlandi
+		Eleutherodactylus_wetmorei
+		Eleutherodactylus_wightmanae
+		Eleutherodactylus_zeus
+		Eleutherodactylus_zugi
+	;
+END;
+BEGIN TREES;
+	TRANSLATE
+		1	Eleutherodactylus_abbotti,
+		2	Eleutherodactylus_acmonis,
+		3	Eleutherodactylus_adelus,
+		4	Eleutherodactylus_albipes,
+		5	Eleutherodactylus_alcoae,
+		6	Eleutherodactylus_alticola,
+		7	Eleutherodactylus_amadeus,
+		8	Eleutherodactylus_amplinympha,
+		9	Eleutherodactylus_andrewsi,
+		10	Eleutherodactylus_antillensis,
+		11	Eleutherodactylus_aporostegus,
+		12	Eleutherodactylus_apostates,
+		13	Eleutherodactylus_armstrongi,
+		14	Eleutherodactylus_atkinsi,
+		15	Eleutherodactylus_audanti,
+		16	Eleutherodactylus_auriculatoides,
+		17	Eleutherodactylus_auriculatus,
+		18	Eleutherodactylus_bakeri,
+		19	Eleutherodactylus_barlagnei,
+		20	Eleutherodactylus_bartonsmithi,
+		21	Eleutherodactylus_blairhedgesi,
+		22	Eleutherodactylus_bothroboans,
+		23	Eleutherodactylus_bresslerae,
+		24	Eleutherodactylus_brevirostris,
+		25	Eleutherodactylus_brittoni,
+		26	Eleutherodactylus_caribe,
+		27	Eleutherodactylus_casparii,
+		28	Eleutherodactylus_cavernicola,
+		29	Eleutherodactylus_chlorophenax,
+		30	Eleutherodactylus_cochranae,
+		31	Eleutherodactylus_cooki,
+		32	Eleutherodactylus_coqui,
+		33	Eleutherodactylus_corona,
+		34	Eleutherodactylus_counouspeus,
+		35	Eleutherodactylus_cubanus,
+		36	Eleutherodactylus_cundalli,
+		37	Eleutherodactylus_cuneatus,
+		38	Eleutherodactylus_darlingtoni,
+		39	Eleutherodactylus_dimidiatus,
+		40	Eleutherodactylus_diplasius,
+		41	Eleutherodactylus_dolomedes,
+		42	Eleutherodactylus_eileenae,
+		43	Eleutherodactylus_emiliae,
+		44	Eleutherodactylus_eneidae,
+		45	Eleutherodactylus_etheridgei,
+		46	Eleutherodactylus_eunaster,
+		47	Eleutherodactylus_feichtingeri,
+		48	Eleutherodactylus_flavescens,
+		49	Eleutherodactylus_fowleri,
+		50	Eleutherodactylus_furcyensis,
+		51	Eleutherodactylus_fuscus,
+		52	Eleutherodactylus_glamyrus,
+		53	Eleutherodactylus_glandulifer,
+		54	Eleutherodactylus_glanduliferoides,
+		55	Eleutherodactylus_glaphycompus,
+		56	Eleutherodactylus_glaucoreius,
+		57	Eleutherodactylus_goini,
+		58	Eleutherodactylus_gossei,
+		59	Eleutherodactylus_grabhami,
+		60	Eleutherodactylus_grahami,
+		61	Eleutherodactylus_greyi,
+		62	Eleutherodactylus_griphus,
+		63	Eleutherodactylus_gryllus,
+		64	Eleutherodactylus_guanahacabibe,
+		65	Eleutherodactylus_guantanamera,
+		66	Eleutherodactylus_gundlachi,
+		67	Eleutherodactylus_haitianus,
+		68	Eleutherodactylus_hedricki,
+		69	Eleutherodactylus_heminota,
+		70	Eleutherodactylus_hypostenor,
+		71	Eleutherodactylus_iberia,
+		72	Eleutherodactylus_inoptatus,
+		73	Eleutherodactylus_intermedius,
+		74	Eleutherodactylus_ionthus,
+		75	Eleutherodactylus_jamaicensis,
+		76	Eleutherodactylus_jaumei,
+		77	Eleutherodactylus_johnstonei,
+		78	Eleutherodactylus_juanariveroi,
+		79	Eleutherodactylus_jugans,
+		80	Eleutherodactylus_junori,
+		81	Eleutherodactylus_klinikowskii,
+		82	Eleutherodactylus_lamprotes,
+		83	Eleutherodactylus_leberi,
+		84	Eleutherodactylus_lentus,
+		85	Eleutherodactylus_leoncei,
+		86	Eleutherodactylus_limbatus,
+		87	Eleutherodactylus_locustus,
+		88	Eleutherodactylus_luteolus,
+		89	Eleutherodactylus_maestrensis,
+		90	Eleutherodactylus_mariposa,
+		91	Eleutherodactylus_martinicensis,
+		92	Eleutherodactylus_melacara,
+		93	Eleutherodactylus_minutus,
+		94	Eleutherodactylus_monensis,
+		95	Eleutherodactylus_montanus,
+		96	Eleutherodactylus_nortoni,
+		97	Eleutherodactylus_notidodes,
+		98	Eleutherodactylus_nubicola,
+		99	Eleutherodactylus_orcutti,
+		100	Eleutherodactylus_orientalis,
+		101	Eleutherodactylus_oxyrhyncus,
+		102	Eleutherodactylus_pantoni,
+		103	Eleutherodactylus_parabates,
+		104	Eleutherodactylus_parapelates,
+		105	Eleutherodactylus_patriciae,
+		106	Eleutherodactylus_paulsoni,
+		107	Eleutherodactylus_pentasyringos,
+		108	Eleutherodactylus_pezopetrus,
+		109	Eleutherodactylus_pictissimus,
+		110	Eleutherodactylus_pinarensis,
+		111	Eleutherodactylus_pinchoni,
+		112	Eleutherodactylus_pituinus,
+		113	Eleutherodactylus_planirostris,
+		114	Eleutherodactylus_poolei,
+		115	Eleutherodactylus_portoricensis,
+		116	Eleutherodactylus_principalis,
+		117	Eleutherodactylus_probolaeus,
+		118	Eleutherodactylus_rhodesi,
+		119	Eleutherodactylus_richmondi,
+		120	Eleutherodactylus_ricordii,
+		121	Eleutherodactylus_riparius,
+		122	Eleutherodactylus_rivularis,
+		123	Eleutherodactylus_rogersi,
+		124	Eleutherodactylus_ronaldi,
+		125	Eleutherodactylus_rucillensis,
+		126	Eleutherodactylus_rufifemoralis,
+		127	Eleutherodactylus_ruthae,
+		128	Eleutherodactylus_schmidti,
+		129	Eleutherodactylus_schwartzi,
+		130	Eleutherodactylus_sciagraphus,
+		131	Eleutherodactylus_simulans,
+		132	Eleutherodactylus_sisyphodemus,
+		133	Eleutherodactylus_sommeri,
+		134	Eleutherodactylus_symingtoni,
+		135	Eleutherodactylus_thomasi,
+		136	Eleutherodactylus_thorectes,
+		137	Eleutherodactylus_toa,
+		138	Eleutherodactylus_tonyi,
+		139	Eleutherodactylus_turquinensis,
+		140	Eleutherodactylus_unicolor,
+		141	Eleutherodactylus_varians,
+		142	Eleutherodactylus_varleyi,
+		143	Eleutherodactylus_ventrilineatus,
+		144	Eleutherodactylus_weinlandi,
+		145	Eleutherodactylus_wetmorei,
+		146	Eleutherodactylus_wightmanae,
+		147	Eleutherodactylus_zeus,
+		148	Eleutherodactylus_zugi
+	;
+	TREE * UNTITLED = [&R] (((147:2.388248316,134:2.388248316):16.49746577,(((61:11.39264418,(((((((57:5.702593221,((27:3.648083802,(64:2.802862951,113:2.802862951):0.8452208514):1.36189548,(123:4.409332639,(131:1.194529126,138:1.194529126):3.214803513):0.6006466432):0.6926139384):0.6388165819,(110:3.065563054,(21:0.5462393826,135:0.5462393826):2.519323672):3.275846748):1.023296445,(3:6.538597865,108:6.538597865):0.826108383):0.6934025837,((66:3.859428161,(47:3.085729939,(142:0.4725654332,73:0.4725654332):2.613164506):0.7736982216):2.6085818,(14:6.158205099,((((76:0.3359019497,86:0.3359019497):1.692157373,71:2.028059323):2.936003132,(45:3.459717335,100:3.459717335):1.50434512):0.1050184751,35:5.06908093):1.089124169):0.3098048619):1.590098871):0.751309257,((13:3.473317484,5:3.473317484):0.3742919838,(85:0.7852333769,38:0.7852333769):3.062376091):4.96180862):0.6427664076,((137:8.251745683,(((((((80:2.640440376,58:2.640440376):0.543371758,(56:2.068808343,(36:1.895845413,28:1.895845413):0.1729629301):1.115003791):0.2890245823,((102:2.190468224,107:2.190468224):1.073838618,62:3.264306842):0.2085298742):0.9134881719,((75:4.016854321,51:4.016854321):0.01322458292,((9:2.860976313,98:2.860976313):0.6256870624,(99:2.937039855,6:2.937039855):0.5496235202):0.5434155284):0.3562459846):1.398421873,88:5.784746761):0.985481722,(132:4.257661881,59:4.257661881):2.512566603):0.8025812962,(122:6.391980696,121:6.391980696):1.180829084):0.678935903):0.4053766395,(139:4.206556128,37:4.206556128):4.450566194):0.7950621739):0.2484911042,(((((109:1.493730792,((144:0.1905323859,118:0.1905323859):0.7594263481,60:0.949958734):0.5437720577):0.06034984927,84:1.554080641):2.140131562,94:3.694212203):0.3373342001,117:4.031546403):3.388012671,((23:1.965801744,120:1.965801744):0.4193119247,2:2.385113668):5.034445405):2.281116527):1.691968585):2.3957475,((128:0.3285789398,125:0.3285789398):11.30188351,(4:6.298942406,((39:2.941186782,43:2.941186782):1.766784837,89:4.707971618):1.590970787):5.331520046):2.157929232):0.9666557413,(((((((12:4.770210533,101:4.770210533):2.009907822,(50:3.511151775,126:3.511151775):3.268966579):0.1986072511,79:6.978725606):0.04454654343,(((136:5.014010542,(55:3.573821143,41:3.573821143):1.440189399):0.7395279452,(18:5.558834446,((7:2.71437097,33:2.71437097):0.3763582515,(69:3.052395199,(26:1.662720765,46:1.662720765):1.389674435):0.03833402207):2.468105224):0.1947040417):0.1163957906,54:5.869934278):1.153337871):0.8918673007,106:7.91513945):0.5257089626,(((53:0.9408203007,130:0.9408203007):2.451871754,143:3.392692054):0.3328344768,24:3.725526531):4.715321881):4.198129053,(148:0.2164122098,81:0.2164122098):12.42256526):2.11606996):4.130666664):4.391487154,((34:19.81623288,((((11:0.01904040552,22:0.01904040552):0.002592424947,127:0.02163283046):6.26055231,(104:4.696781869,70:4.696781869):1.585403272):5.747469904,(72:7.006235078,(96:0.09249164932,29:0.09249164932):6.913743429):5.023419966):7.786577834):1.166019232,((140:16.79994053,119:16.79994053):2.367480707,(((((95:4.880393209,105:4.880393209):1.2614577,16:6.141850909):8.323669665,(((83:4.780090813,92:4.780090813):5.10425002,((74:0.4601012403,65:0.4601012403):1.871117977,141:2.331219217):7.553121616):2.279069383,((82:5.208576289,49:5.208576289):4.952957762,((145:2.393200426,40:2.393200426):0.9807181725,133:3.373918598):6.787615452):2.001876166):2.302110358):2.484173519,((((((67:6.17732686,1:6.17732686):0.7617550177,(97:3.068804785,15:3.068804785):3.870277093):0.9210335539,103:7.860115432):1.021120485,112:8.881235917):2.569813363,(93:8.250818406,114:8.250818406):3.200230874):2.986418218,(42:11.72383505,((((116:1.812777983,17:1.812777983):3.909394848,20:5.722172831):1.7398744,52:7.46204723):2.331079174,(90:4.483135068,124:4.483135068):5.309991336):1.930708645):2.713632448):2.512226595):1.014046296,((((91:4.381179736,8:4.381179736):4.143571021,(19:1.057494918,111:1.057494918):7.467255839):1.257966597,77:9.782717354):6.361172934,(48:14.07007211,(((((115:3.393512316,146:3.393512316):0.6595281442,(129:2.753498705,32:2.753498705):1.299541755):2.11924855,(78:1.586730142,63:1.586730142):4.585558868):1.758911022,(10:6.000332546,((30:2.766811871,68:2.766811871):1.578865177,25:4.345677048):1.654655498):1.930867486):1.71954721,((44:3.561626148,87:3.561626148):0.5904230146,31:4.152049162):5.49869808):4.419324864):2.073818182):1.819850101):1.203680847):1.814830875):2.294949133);
+END;

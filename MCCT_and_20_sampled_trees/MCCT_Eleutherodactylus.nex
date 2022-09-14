@@ -1,0 +1,227 @@
+#NEXUS
+begin taxa;
+	dimensions ntax=148;
+	taxlabels
+	'E.unicolor'
+	'E.richmondi'
+	'E.martinicensis'
+	'E.amplinympha'
+	'E.johnstonei'
+	'E.barlagnei'
+	'E.pinchoni'
+	'E.flavescens'
+	'E.cooki'
+	'E.eneidae'
+	'E.locustus'
+	'E.juanariveroi'
+	'E.gryllus'
+	'E.schwartzi'
+	'E.coqui'
+	'E.portoricensis'
+	'E.wightmanae'
+	'E.antillensis'
+	'E.brittoni'
+	'E.hedricki'
+	'E.cochranae'
+	'E.poolei'
+	'E.minutus'
+	'E.eileenae'
+	'E.auriculatus'
+	'E.principalis'
+	'E.bartonsmithi'
+	'E.glamyrus'
+	'E.mariposa'
+	'E.ronaldi'
+	'E.parabates'
+	'E.pituinus'
+	'E.abbotti'
+	'E.haitianus'
+	'E.audanti'
+	'E.notidodes'
+	'E.montanus'
+	'E.patriciae'
+	'E.auriculatoides'
+	'E.ionthus'
+	'E.guantanamera'
+	'E.varians'
+	'E.leberi'
+	'E.melacara'
+	'E.diplasius'
+	'E.wetmorei'
+	'E.sommeri'
+	'E.lamprotes'
+	'E.fowleri'
+	'E.aporostegus'
+	'E.ruthae'
+	'E.bothroboans'
+	'E.hypostenor'
+	'E.parapelates'
+	'E.inoptatus'
+	'E.nortoni'
+	'E.chlorophenax'
+	'E.counouspeus'
+	'E.zeus'
+	'E.symingtoni'
+	'E.zugi'
+	'E.klinikowskii'
+	'E.glandulifer'
+	'E.sciagraphus'
+	'E.brevirostris'
+	'E.ventrilineatus'
+	'E.jugans'
+	'E.dolomedes'
+	'E.glaphycompus'
+	'E.thorectes'
+	'E.bakeri'
+	'E.glanduliferoides'
+	'E.eunaster'
+	'E.caribe'
+	'E.amadeus'
+	'E.corona'
+	'E.heminota'
+	'E.apostates'
+	'E.oxyrhyncus'
+	'E.furcyensis'
+	'E.rufifemoralis'
+	'E.paulsoni'
+	'E.greyi'
+	'E.turquinensis'
+	'E.cuneatus'
+	'E.toa'
+	'E.sisyphodemus'
+	'E.grabhami'
+	'E.luteolus'
+	'E.alticola'
+	'E.orcutti'
+	'E.andrewsi'
+	'E.nubicola'
+	'E.fuscus'
+	'E.jamaicensis'
+	'E.glaucoreius'
+	'E.cundalli'
+	'E.cavernicola'
+	'E.gossei'
+	'E.junori'
+	'E.pantoni'
+	'E.pentasyringos'
+	'E.griphus'
+	'E.rivularis'
+	'E.riparius'
+	'E.pinarensis'
+	'E.blairhedgesi'
+	'E.thomasi'
+	'E.simulans'
+	'E.tonyi'
+	'E.goini'
+	'E.guanahacabibes'
+	'E.planirostris'
+	'E.casparii'
+	'E.rogersi'
+	'E.adelus'
+	'E.pezopetrus'
+	'E.feichtingeri'
+	'E.varleyi'
+	'E.intermedius'
+	'E.gundlachi'
+	'E.orientalis'
+	'E.jaumei'
+	'E.limbatus'
+	'E.iberia'
+	'E.cubanus'
+	'E.etheridgei'
+	'E.atkinsi'
+	'E.leoncei'
+	'E.darlingtoni'
+	'E.armstrongi'
+	'E.alcoae'
+	'E.acmonis'
+	'E.ricordii'
+	'E.bresslerae'
+	'E.probolaeus'
+	'E.grahami'
+	'E.weinlandi'
+	'E.rhodesi'
+	'E.pictissimus'
+	'E.lentus'
+	'E.monensis'
+	'E.schmidti'
+	'E.rucillensis'
+	'E.albipes'
+	'E.dimidiatus'
+	'E.emiliae'
+	'E.maestrensis'
+;
+end;
+
+begin trees;
+	tree UNTITLED = [&R] (((('E.unicolor'[&!color=#-10027264]:11.55711322,'E.richmondi'[&!color=#-10027264]:11.55711322)[&!color=#-10027264]:6.361756468,((((('E.martinicensis'[&!color=#-39169]:2.707043629,'E.amplinympha'[&!color=#-39169]:2.707043629)[&!color=#-39169]:3.441678325,'E.johnstonei'[&!color=#-39169]:6.148721954)[&!color=#-39169]:1.719924283,('E.barlagnei'[&!color=#-39169]:0.9825714965,'E.pinchoni'[&!color=#-39169]:0.9825714965)[&!color=#-39169]:6.88607474)[&!color=#-39169]:6.780948284,('E.flavescens'[&!color=#-16763905]:12.23304749,(('E.cooki'[&!color=#-10027264]:3.652848536,('E.eneidae'[&!color=#-10027264]:1.90531855,'E.locustus'[&!color=#-10027264]:1.90531855)[&!color=#-10027264]:1.747529986)[&!color=#-10027264]:5.190296898,((('E.juanariveroi'[&!color=#-10027264]:1.084718101,'E.gryllus'[&!color=#-10027264]:1.084718101)[&!color=#-10027264]:5.572496732,(('E.schwartzi'[&!color=#-10027264]:2.665981898,'E.coqui'[&!color=#-10027264]:2.665981898)[&!color=#-10027264]:2.019024408,('E.portoricensis'[&!color=#-10027264]:3.924368991,'E.wightmanae'[&!color=#-10027264]:3.924368991)[&!color=#-10027264]:0.7606373148)[&!color=#-10027264]:1.972208528)[&!color=#-10027264]:1.078317741,('E.antillensis'[&!color=#-10027264]:6.721322421,('E.brittoni'[&!color=#-10027264]:5.052236709,('E.hedricki'[&!color=#-10027264]:3.312307473,'E.cochranae'[&!color=#-10027264]:3.312307473)[&!color=#-10027264]:1.739929235)[&!color=#-10027264]:1.669085713)[&!color=#-10027264]:1.014210153)[&!color=#-10027264]:1.107612859)[&!color=#-10027264]:3.389902058):2.416547029):1.902348654,((('E.poolei'[&!color=#-16763905]:8.838345923,'E.minutus'[&!color=#-16763905]:8.838345923)[&!color=#-16763905]:3.701544571,(('E.eileenae'[&!color=#-65485]:10.32316772,(((('E.auriculatus'[&!color=#-65485]:2.309640633,'E.principalis'[&!color=#-65485]:2.309640633)[&!color=#-65485]:3.246018522,'E.bartonsmithi'[&!color=#-65485]:5.555659155)[&!color=#-65485]:1.674852332,'E.glamyrus'[&!color=#-65485]:7.230511487)[&!color=#-65485]:1.685948884,('E.mariposa'[&!color=#-65485]:3.689388301,'E.ronaldi'[&!color=#-65485]:3.689388301)[&!color=#-65485]:5.22707207)[&!color=#-65485]:1.406707347)[&!color=#-65485]:1.475280571,(('E.parabates'[&!color=#-16776961]:5.891490086,'E.pituinus'[&!color=#-16776961]:5.891490086)[&!color=#-16776961]:1.87242746,(('E.abbotti'[&!color=#-16776961]:5.534313767,'E.haitianus'[&!color=#-16776961]:5.534313767)[&!color=#-16776961]:0.6912220302,('E.audanti'[&!color=#-16776961]:3.876175449,'E.notidodes'[&!color=#-16776961]:3.876175449)[&!color=#-16776961]:2.349360348)[&!color=#-16776961]:1.538381749)[&!color=#-16776961]:4.034530743):0.7414422048):2.623684153,((('E.montanus'[&!color=#-16776961]:4.13025455,'E.patriciae'[&!color=#-16776961]:4.13025455)[&!color=#-16776961]:1.137991851,'E.auriculatoides'[&!color=#-16776961]:5.268246401)[&!color=#-16776961]:5.955893922,((((('E.ionthus'[&!color=#-65536]:0.6571730849,'E.guantanamera'[&!color=#-65536]:0.6571730849)[&!color=#-65536]:1.287590178,'E.varians'[&!color=#-65536]:1.944763263)[&!color=#-65536]:3.964815566,('E.leberi'[&!color=#-65536]:2.544283645,'E.melacara'[&!color=#-65536]:2.544283645)[&!color=#-65536]:3.365295184)[&!color=#-65536]:2.050723612,(('E.diplasius'[&!color=#-16776961]:1.988973568,'E.wetmorei'[&!color=#-16776961]:1.988973568)[&!color=#-16776961]:0.7119259401,'E.sommeri'[&!color=#-16776961]:2.700899508)[&!color=#-16776961]:5.259402933):1.39601058,('E.lamprotes'[&!color=#-16776961]:3.576820014,'E.fowleri'[&!color=#-16776961]:3.576820014)[&!color=#-16776961]:5.779493007):1.867827302):3.939434323):1.388368528):1.366926515):1.11587298,((((('E.aporostegus'[&!color=#-16776961]:0.03827534283,'E.ruthae'[&!color=#-16776961]:0.03827534283)[&!color=#-16776961]:0.1112163426,'E.bothroboans'[&!color=#-16776961]:0.1494916854)[&!color=#-16776961]:5.978814962,('E.hypostenor'[&!color=#-16776961]:4.325862316,'E.parapelates'[&!color=#-16776961]:4.325862316)[&!color=#-16776961]:1.802444332)[&!color=#-16776961]:6.289859655,('E.inoptatus'[&!color=#-16776961]:6.976872428,('E.nortoni'[&!color=#-16776961]:0.1665187097,'E.chlorophenax'[&!color=#-16776961]:0.1665187097)[&!color=#-16776961]:6.810353718)[&!color=#-16776961]:5.441293874)[&!color=#-16776961]:5.140733173,'E.counouspeus'[&!color=#-16776961]:17.55889948)[&!color=#-16776961]:1.475843195):3.0556393,(('E.zeus'[&!color=#-65536]:3.717515624,'E.symingtoni'[&!color=#-65536]:3.717515624)[&!color=#-65536]:13.55804052,((('E.zugi'[&!color=#-65536]:0.1466464928,'E.klinikowskii'[&!color=#-65536]:0.1466464928)[&!color=#-65536]:13.59997896,(((('E.glandulifer'[&!color=#-16776961]:0.5689177023,'E.sciagraphus'[&!color=#-16776961]:0.5689177023)[&!color=#-16776961]:3.619737242,('E.brevirostris'[&!color=#-16776961]:3.419754656,'E.ventrilineatus'[&!color=#-16776961]:3.419754656)[&!color=#-16776961]:0.7689002892)[&!color=#-16776961]:4.145424278,((('E.jugans'[&!color=#-16776961]:6.516839176,(((('E.dolomedes'[&!color=#-16776961]:3.30938242,'E.glaphycompus'[&!color=#-16776961]:3.30938242)[&!color=#-16776961]:0.9449867639,'E.thorectes'[&!color=#-16776961]:4.254369184)[&!color=#-16776961]:0.2951123247,'E.bakeri'[&!color=#-16776961]:4.549481508)[&!color=#-16776961]:1.035016135,('E.glanduliferoides'[&!color=#-16776961]:4.83900431,((('E.eunaster'[&!color=#-16776961]:1.77824651,'E.caribe'[&!color=#-16776961]:1.77824651)[&!color=#-16776961]:1.105387629,('E.amadeus'[&!color=#-16776961]:2.387378752,'E.corona'[&!color=#-16776961]:2.387378752)[&!color=#-16776961]:0.4962553871)[&!color=#-16776961]:0.5765862257,'E.heminota'[&!color=#-16776961]:3.460220365)[&!color=#-16776961]:1.378783946)[&!color=#-16776961]:0.7454933326)[&!color=#-16776961]:0.9323415326)[&!color=#-16776961]:0.3449436358,('E.apostates'[&!color=#-16776961]:3.73901781,'E.oxyrhyncus'[&!color=#-16776961]:3.73901781)[&!color=#-16776961]:3.122765002)[&!color=#-16776961]:0.5501276516,('E.furcyensis'[&!color=#-16776961]:3.667503378,'E.rufifemoralis'[&!color=#-16776961]:3.667503378)[&!color=#-16776961]:3.744407085)[&!color=#-16776961]:0.92216876)[&!color=#-16776961]:0.3133857192,'E.paulsoni'[&!color=#-16776961]:8.647464942)[&!color=#-16776961]:5.099160509):1.332830889,(('E.greyi'[&!color=#-65536]:11.79255982,(((('E.turquinensis'[&!color=#-65536]:4.252877202,'E.cuneatus'[&!color=#-65536]:4.252877202)[&!color=#-65536]:3.581883674,('E.toa'[&!color=#-65536]:7.278076754,((('E.sisyphodemus'[&!color=#-6750055]:2.965802074,'E.grabhami'[&!color=#-6750055]:2.965802074)[&!color=#-6750055]:2.228597455,('E.luteolus'[&!color=#-6750055]:4.756081208,((('E.alticola'[&!color=#-6750055]:2.392900376,'E.orcutti'[&!color=#-6750055]:2.392900376)[&!color=#-6750055]:1.109526089,('E.andrewsi'[&!color=#-6750055]:3.043688716,'E.nubicola'[&!color=#-6750055]:3.043688716)[&!color=#-6750055]:0.4587377487)[&!color=#-6750055]:0.6185378558,(('E.fuscus'[&!color=#-6750055]:3.144939446,'E.jamaicensis'[&!color=#-6750055]:3.144939446)[&!color=#-6750055]:0.6558444957,((('E.glaucoreius'[&!color=#-6750055]:1.719910677,'E.cundalli'[&!color=#-6750055]:1.719910677)[&!color=#-6750055]:0.3828117446,'E.cavernicola'[&!color=#-6750055]:2.102722422)[&!color=#-6750055]:1.345968981,(('E.gossei'[&!color=#-6750055]:2.425759626,'E.junori'[&!color=#-6750055]:2.425759626)[&!color=#-6750055]:0.8157023239,(('E.pantoni'[&!color=#-6750055]:1.944560035,'E.pentasyringos'[&!color=#-6750055]:1.944560035)[&!color=#-6750055]:1.10875488,'E.griphus'[&!color=#-6750055]:3.053314915)[&!color=#-6750055]:0.1881470341)[&!color=#-6750055]:0.2072294535)[&!color=#-6750055]:0.3520925389)[&!color=#-6750055]:0.3201803789)[&!color=#-6750055]:0.6351168874)[&!color=#-6750055]:0.4383183213)[&!color=#-6750055]:1.527472008,('E.rivularis'[&!color=#-65536]:5.255497175,'E.riparius'[&!color=#-65536]:5.255497175)[&!color=#-65536]:1.466374362):0.5562052172):0.5566841218):1.637587669,((((('E.pinarensis'[&!color=#-65536]:3.034546802,('E.blairhedgesi'[&!color=#-65536]:0.3975202911,'E.thomasi'[&!color=#-65536]:0.3975202911)[&!color=#-65536]:2.637026511)[&!color=#-65536]:3.007252574,(('E.simulans'[&!color=#-65536]:2.045234016,'E.tonyi'[&!color=#-65536]:2.045234016)[&!color=#-65536]:3.465272813,('E.goini'[&!color=#-65536]:5.274876292,((('E.guanahacabibes'[&!color=#-65536]:2.550086869,'E.planirostris'[&!color=#-65536]:2.550086869)[&!color=#-65536]:1.358840523,'E.casparii'[&!color=#-65536]:3.908927391)[&!color=#-65536]:0.9658464136,'E.rogersi'[&!color=#-6711040]:4.874773805)[&!color=#-65536]:0.4001024868)[&!color=#-65536]:0.2356305374)[&!color=#-65536]:0.5312925463)[&!color=#-65536]:0.4210355709,('E.adelus'[&!color=#-65536]:3.852867109,'E.pezopetrus'[&!color=#-65536]:3.852867109)[&!color=#-65536]:2.609967837)[&!color=#-65536]:1.07374549,((('E.feichtingeri'[&!color=#-65536]:2.942531003,('E.varleyi'[&!color=#-65536]:0.432512267,'E.intermedius'[&!color=#-65536]:0.432512267)[&!color=#-65536]:2.510018736)[&!color=#-65536]:1.475787323,'E.gundlachi'[&!color=#-65536]:4.418318326)[&!color=#-65536]:2.269934309,(((('E.orientalis'[&!color=#-65536]:4.360658149,(('E.jaumei'[&!color=#-65536]:0.896595099,'E.limbatus'[&!color=#-65536]:0.896595099)[&!color=#-65536]:1.186031268,'E.iberia'[&!color=#-65536]:2.082626367)[&!color=#-65536]:2.278031783)[&!color=#-65536]:0.3929938749,'E.cubanus'[&!color=#-65536]:4.753652024)[&!color=#-65536]:0.4696010178,'E.etheridgei'[&!color=#-65536]:5.223253042)[&!color=#-65536]:1.388032565,'E.atkinsi'[&!color=#-65536]:6.611285607)[&!color=#-65536]:0.07696702673)[&!color=#-65536]:0.8483278025)[&!color=#-65536]:1.315998466,(('E.leoncei'[&!color=#-16776961]:1.259294337,'E.darlingtoni'[&!color=#-16776961]:1.259294337)[&!color=#-16776961]:3.674137872,('E.armstrongi'[&!color=#-16776961]:3.230048172,'E.alcoae'[&!color=#-16776961]:3.230048172)[&!color=#-16776961]:1.703384038)[&!color=#-16776961]:3.919146693):0.6197696432):0.6081477186,(('E.acmonis'[&!color=#-65536]:3.852816413,('E.ricordii'[&!color=#-65536]:2.592451437,'E.bresslerae'[&!color=#-65536]:2.592451437)[&!color=#-65536]:1.260364976)[&!color=#-65536]:4.577905052,(('E.probolaeus'[&!color=#-16776961]:4.130831021,((('E.grahami'[&!color=#-16776961]:1.171228154,('E.weinlandi'[&!color=#-16776961]:0.2316643481,'E.rhodesi'[&!color=#-16776961]:0.2316643481)[&!color=#-16776961]:0.9395638062)[&!color=#-16776961]:0.2488893347,'E.pictissimus'[&!color=#-16776961]:1.420117489)[&!color=#-16776961]:0.494824259,'E.lentus'[&!color=#-13369600]:1.914941748)[&!color=#-16777216]:2.215889273):0.4834423407,'E.monensis'[&!color=#-256]:4.614273361):3.816448103):1.6497748):1.712063558):1.746021097,(('E.schmidti'[&!color=#-16776961]:0.2240044127,'E.rucillensis'[&!color=#-16776961]:0.2240044127)[&!color=#-16776961]:10.80846008,('E.albipes'[&!color=#-65536]:7.552473401,(('E.dimidiatus'[&!color=#-65536]:4.303145665,'E.emiliae'[&!color=#-65536]:4.303145665)[&!color=#-65536]:2.069787177,'E.maestrensis'[&!color=#-65536]:6.372932842)[&!color=#-65536]:1.179540559)[&!color=#-65536]:3.479991092):2.506116426):1.540875421):2.196099807):4.814825824);
+end;
+
+begin figtree;
+	set appearance.backgroundColorAttribute="User Selection";
+	set appearance.backgroundColour=#-1;
+	set appearance.branchColorAttribute="User Selection";
+	set appearance.branchLineWidth=2.0;
+	set appearance.foregroundColour=#-16777216;
+	set appearance.selectionColour=#-2144520576;
+	set branchLabels.colorAttribute="User Selection";
+	set branchLabels.displayAttribute="Branch times";
+	set branchLabels.fontName="Agency FB";
+	set branchLabels.fontSize=8;
+	set branchLabels.fontStyle=0;
+	set branchLabels.isShown=false;
+	set branchLabels.significantDigits=4;
+	set layout.expansion=0;
+	set layout.layoutType="RECTILINEAR";
+	set layout.zoom=492;
+	set nodeBars.barWidth=4.0;
+	set nodeLabels.colorAttribute="User Selection";
+	set nodeLabels.displayAttribute="Node ages";
+	set nodeLabels.fontName="Agency FB";
+	set nodeLabels.fontSize=8;
+	set nodeLabels.fontStyle=0;
+	set nodeLabels.isShown=false;
+	set nodeLabels.significantDigits=4;
+	set polarLayout.alignTipLabels=false;
+	set polarLayout.angularRange=0;
+	set polarLayout.rootAngle=0;
+	set polarLayout.rootLength=100;
+	set polarLayout.showRoot=true;
+	set radialLayout.spread=0.0;
+	set rectilinearLayout.alignTipLabels=false;
+	set rectilinearLayout.curvature=0;
+	set rectilinearLayout.rootLength=196;
+	set scale.offsetAge=0.0;
+	set scale.rootAge=1.0;
+	set scale.scaleFactor=1.0;
+	set scale.scaleRoot=false;
+	set scaleAxis.automaticScale=true;
+	set scaleAxis.fontSize=8.0;
+	set scaleAxis.isShown=false;
+	set scaleAxis.lineWidth=1.0;
+	set scaleAxis.majorTicks=5.0;
+	set scaleAxis.origin=0.0;
+	set scaleAxis.reverseAxis=false;
+	set scaleAxis.showGrid=true;
+	set scaleAxis.significantDigits=4;
+	set scaleBar.automaticScale=true;
+	set scaleBar.fontSize=10.0;
+	set scaleBar.isShown=true;
+	set scaleBar.lineWidth=1.0;
+	set scaleBar.scaleRange=0.0;
+	set scaleBar.significantDigits=4;
+	set tipLabels.colorAttribute="User Selection";
+	set tipLabels.displayAttribute="Names";
+	set tipLabels.fontName="Arial";
+	set tipLabels.fontSize=11;
+	set tipLabels.fontStyle=0;
+	set tipLabels.isShown=true;
+	set tipLabels.significantDigits=4;
+	set trees.order=false;
+	set trees.orderType="increasing";
+	set trees.rooting=false;
+	set trees.rootingType="User Selection";
+	set trees.transform=false;
+	set trees.transformType="cladogram";
+end;
+
