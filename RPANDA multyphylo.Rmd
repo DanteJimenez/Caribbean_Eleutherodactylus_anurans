@@ -1,0 +1,2307 @@
+---
+title: "Rpanda-multiphylo"
+author: "Dante"
+date: "8/1/2022"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+# Directorio de trabajo
+
+```{r}
+setwd("C:/Users/Alejandro/Google Drive/Doctorado/Data 3")
+```
+
+
+# Packages 
+```{r}
+library("RPANDA")
+library("picante")
+library("vegan")
+library("permute")
+library("lattice")
+library("nlme")
+library("phytools")
+```
+
+
+# Main analysis phylogeny
+```{r}
+arbolE<- read.nexus("CaribbeanEleutherodactylusTree.nex")
+tot_time<-max(node.age(arbolE)$ages)
+```
+
+
+### ---ORIGINALES
+
+### Models to test
+## Pure birth models
+
+# 1 Pure birth model with constant speciation rate
+```{r}
+f.lamb_1<- function(t,y){y[1]}
+f.mu_1<- function(t,y){0}
+#
+lamb_par_1<-c(0.09)
+mu_par_1<-c()
+#
+result_pb_cst<-fit_bd(arbolE, tot_time, f.lamb = f.lamb_1, f.mu = f.mu_1, lamb_par_1, mu_par_1, f= 148/167, cst.lamb = TRUE, fix.mu = TRUE, dt=1e-3)
+#
+result_pb_cst
+```
+
+
+
+# 2e Pure birth model with exponential variation of the speciation rate with time
+```{r}
+f.lamb_2e<- function(t,y){y[1] * exp(y[2] * t)}
+f.mu_2e<- function(t,y){0}
+#
+lamb_par_2e<-c(0.09,0.02)
+mu_par_2e<-c()
+#
+result_pb_2e<-fit_bd(arbolE, tot_time, f.lamb = f.lamb_2e, f.mu = f.mu_2e, lamb_par_2e, mu_par_2e, f= 148/167, expo.lamb = TRUE, fix.mu = TRUE, dt=1e-3)
+#
+result_pb_2e
+```
+
+
+
+## Birth-death models
+
+# 3 Birth-death model with constant speciation rate and constant extinction
+```{r}
+f.lamb_3<-function(t,y){y[1]}
+f.mu_3<-function(t,y){y[1]}
+#
+lamb_par_3<-c(0.09)
+mu_par_3<-c(0.001)
+#
+result_bd_3<- fit_bd(arbolE, tot_time, f.lamb_3, f.mu_3, lamb_par_3, mu_par_3, f=148/167, cst.lamb = TRUE, cst.mu = TRUE, dt=1e-3)
+#
+result_bd_3
+```
+
+
+# 4e Birth death model with constant speciation rate and exponential variation in extinction rate
+```{r}
+f.lamb_4e<-function(t,y){y[1]}
+f.mu_4e<-function(t,y){y[1]*exp(y[2]*t)}
+#
+lamb_par_4e<- c(0.1)
+mu_par_4e<- c(0.02,0.002)
+#
+result_bd_4e<- fit_bd(arbolE, tot_time, f.lamb_4e, f.mu_4e, lamb_par_4e, mu_par_4e, f=148/167, cst.lamb = TRUE, expo.mu = TRUE, dt=1e-3)
+#
+result_bd_4e
+```
+
+
+# 5e Birth-death model with exponential variation in speciation rate and constant extinction
+```{r}
+f.lamb_5e<-function(t,y){y[1] * exp(y[2] * t)}
+f.mu_5e<-function(t,y){y[1]}
+#
+lamb_par_5e <- c(0.05, 0.01)
+mu_par_5e <-c(0.005)
+#
+result_bd_5e<- fit_bd(arbolE, tot_time, f.lamb = f.lamb_5e, f.mu = f.mu_5e, lamb_par_5e, mu_par_5e, f=148/167, expo.lamb = TRUE, cst.mu = TRUE, dt=1e-3)
+#
+result_bd_5e
+```
+
+
+# 6e Birth-death model with exponential variation in speciation rate and exponential variation in extinction rate
+```{r}
+f.lamb_6e<-function(t,y){y[1] * exp(y[2] * t)}
+f.mu_6e<-function(t,y){y[1] * exp(y[2] * t)}
+#
+lamb_par_6e <- c(0.05, 0.01)
+mu_par_6e <-c(0.005, 0.001)
+#
+result_bd_6e<- fit_bd(arbolE, tot_time, f.lamb = f.lamb_6e, f.mu = f.mu_6e, lamb_par_6e, mu_par_6e, f=148/167, expo.lamb = TRUE, expo.mu = TRUE, dt=1e-3)
+#
+result_bd_6e
+```
+
+
+
+# Find the best model
+# todos los modelos
+```{r}
+aiclist<- setNames(c(result_pb_cst$aicc, result_pb_2e$aicc, result_bd_3$aicc, result_bd_4e$aicc, result_bd_5e$aicc, result_bd_6e$aicc), c("cst", "2e", "3", "4e", "5e", "6e"))
+#
+aic.w(aiclist)
+```
+
+
+
+### ---ONE
+
+# Tree
+```{r}
+arbolE<- read.nexus("uno.nex")
+```
+
+
+### Models to test
+## Pure birth models
+
+# 1 Pure birth model with constant speciation rate
+```{r}
+f.lamb_1<- function(t,y){y[1]}
+f.mu_1<- function(t,y){0}
+#
+lamb_par_1<-c(0.09)
+mu_par_1<-c()
+#
+result_pb_cst<-fit_bd(arbolE, tot_time, f.lamb = f.lamb_1, f.mu = f.mu_1, lamb_par_1, mu_par_1, f= 148/167, cst.lamb = TRUE, fix.mu = TRUE, dt=1e-3)
+#
+result_pb_cst
+```
+
+
+
+# 2e Pure birth model with exponential variation of the speciation rate with time
+```{r}
+f.lamb_2e<- function(t,y){y[1] * exp(y[2] * t)}
+f.mu_2e<- function(t,y){0}
+#
+lamb_par_2e<-c(0.09,0.02)
+mu_par_2e<-c()
+#
+result_pb_2e<-fit_bd(arbolE, tot_time, f.lamb = f.lamb_2e, f.mu = f.mu_2e, lamb_par_2e, mu_par_2e, f= 148/167, expo.lamb = TRUE, fix.mu = TRUE, dt=1e-3)
+#
+result_pb_2e
+```
+
+
+## Birth-death models
+
+# 3 Birth-death model with constant speciation rate and constant extinction
+```{r}
+f.lamb_3<-function(t,y){y[1]}
+f.mu_3<-function(t,y){y[1]}
+#
+lamb_par_3<-c(0.09)
+mu_par_3<-c(0.001)
+#
+result_bd_3<- fit_bd(arbolE, tot_time, f.lamb_3, f.mu_3, lamb_par_3, mu_par_3, f=148/167, cst.lamb = TRUE, cst.mu = TRUE, dt=1e-3)
+#
+result_bd_3
+```
+
+
+# 4e Birth death model with constant speciation rate and exponential variation in extinction rate
+```{r}
+f.lamb_4e<-function(t,y){y[1]}
+f.mu_4e<-function(t,y){y[1]*exp(y[2]*t)}
+#
+lamb_par_4e<- c(0.1)
+mu_par_4e<- c(0.02,0.002)
+#
+result_bd_4e<- fit_bd(arbolE, tot_time, f.lamb_4e, f.mu_4e, lamb_par_4e, mu_par_4e, f=148/167, cst.lamb = TRUE, expo.mu = TRUE, dt=1e-3)
+#
+result_bd_4e
+```
+
+
+# 5e Birth-death model with exponential variation in speciation rate and constant extinction
+```{r}
+f.lamb_5e<-function(t,y){y[1] * exp(y[2] * t)}
+f.mu_5e<-function(t,y){y[1]}
+#
+lamb_par_5e <- c(0.05, 0.01)
+mu_par_5e <-c(0.005)
+#
+result_bd_5e<- fit_bd(arbolE, tot_time, f.lamb = f.lamb_5e, f.mu = f.mu_5e, lamb_par_5e, mu_par_5e, f=148/167, expo.lamb = TRUE, cst.mu = TRUE, dt=1e-3)
+#
+result_bd_5e
+```
+
+
+# 6e Birth-death model with exponential variation in speciation rate and exponential variation in extinction rate
+```{r}
+f.lamb_6e<-function(t,y){y[1] * exp(y[2] * t)}
+f.mu_6e<-function(t,y){y[1] * exp(y[2] * t)}
+#
+lamb_par_6e <- c(0.05, 0.01)
+mu_par_6e <-c(0.005, 0.001)
+#
+result_bd_6e<- fit_bd(arbolE, tot_time, f.lamb = f.lamb_6e, f.mu = f.mu_6e, lamb_par_6e, mu_par_6e, f=148/167, expo.lamb = TRUE, expo.mu = TRUE, dt=1e-3)
+#
+result_bd_6e
+```
+
+
+
+
+# Find the best model
+# todos los modelos
+```{r}
+aiclist<- setNames(c(result_pb_cst$aicc, result_pb_2e$aicc, result_bd_3$aicc, result_bd_4e$aicc, result_bd_5e$aicc, result_bd_6e$aicc), c("cst", "2e", "3", "4e", "5e", "6e"))
+#
+aic.w(aiclist)
+```
+
+
+
+
+### ---TWO
+
+# Tree
+```{r}
+arbolE<- read.nexus("t2.nex")
+```
+
+
+### Models to test
+## Pure birth models
+
+# 1 Pure birth model with constant speciation rate
+```{r}
+f.lamb_1<- function(t,y){y[1]}
+f.mu_1<- function(t,y){0}
+#
+lamb_par_1<-c(0.09)
+mu_par_1<-c()
+#
+result_pb_cst<-fit_bd(arbolE, tot_time, f.lamb = f.lamb_1, f.mu = f.mu_1, lamb_par_1, mu_par_1, f= 148/167, cst.lamb = TRUE, fix.mu = TRUE, dt=1e-3)
+#
+result_pb_cst
+```
+
+
+
+# 2e Pure birth model with exponential variation of the speciation rate with time
+```{r}
+f.lamb_2e<- function(t,y){y[1] * exp(y[2] * t)}
+f.mu_2e<- function(t,y){0}
+#
+lamb_par_2e<-c(0.09,0.02)
+mu_par_2e<-c()
+#
+result_pb_2e<-fit_bd(arbolE, tot_time, f.lamb = f.lamb_2e, f.mu = f.mu_2e, lamb_par_2e, mu_par_2e, f= 148/167, expo.lamb = TRUE, fix.mu = TRUE, dt=1e-3)
+#
+result_pb_2e
+```
+
+
+## Birth-death models
+
+# 3 Birth-death model with constant speciation rate and constant extinction
+```{r}
+f.lamb_3<-function(t,y){y[1]}
+f.mu_3<-function(t,y){y[1]}
+#
+lamb_par_3<-c(0.09)
+mu_par_3<-c(0.001)
+#
+result_bd_3<- fit_bd(arbolE, tot_time, f.lamb_3, f.mu_3, lamb_par_3, mu_par_3, f=148/167, cst.lamb = TRUE, cst.mu = TRUE, dt=1e-3)
+#
+result_bd_3
+```
+
+
+# 4e Birth death model with constant speciation rate and exponential variation in extinction rate
+```{r}
+f.lamb_4e<-function(t,y){y[1]}
+f.mu_4e<-function(t,y){y[1]*exp(y[2]*t)}
+#
+lamb_par_4e<- c(0.1)
+mu_par_4e<- c(0.02,0.002)
+#
+result_bd_4e<- fit_bd(arbolE, tot_time, f.lamb_4e, f.mu_4e, lamb_par_4e, mu_par_4e, f=148/167, cst.lamb = TRUE, expo.mu = TRUE, dt=1e-3)
+#
+result_bd_4e
+```
+
+
+
+# 5e Birth-death model with exponential variation in speciation rate and constant extinction
+```{r}
+f.lamb_5e<-function(t,y){y[1] * exp(y[2] * t)}
+f.mu_5e<-function(t,y){y[1]}
+#
+lamb_par_5e <- c(0.05, 0.01)
+mu_par_5e <-c(0.005)
+#
+result_bd_5e<- fit_bd(arbolE, tot_time, f.lamb = f.lamb_5e, f.mu = f.mu_5e, lamb_par_5e, mu_par_5e, f=148/167, expo.lamb = TRUE, cst.mu = TRUE, dt=1e-3)
+#
+result_bd_5e
+```
+
+
+# 6e Birth-death model with exponential variation in speciation rate and exponential variation in extinction rate
+```{r}
+f.lamb_6e<-function(t,y){y[1] * exp(y[2] * t)}
+f.mu_6e<-function(t,y){y[1] * exp(y[2] * t)}
+#
+lamb_par_6e <- c(0.05, 0.01)
+mu_par_6e <-c(0.005, 0.001)
+#
+result_bd_6e<- fit_bd(arbolE, tot_time, f.lamb = f.lamb_6e, f.mu = f.mu_6e, lamb_par_6e, mu_par_6e, f=148/167, expo.lamb = TRUE, expo.mu = TRUE, dt=1e-3)
+#
+result_bd_6e
+```
+
+
+# Find the best model
+# todos los modelos
+```{r}
+aiclist<- setNames(c(result_pb_cst$aicc, result_pb_2e$aicc, result_bd_3$aicc, result_bd_4e$aicc, result_bd_5e$aicc, result_bd_6e$aicc), c("cst", "2e", "3", "4e", "5e", "6e"))
+#
+aic.w(aiclist)
+```
+
+
+
+### ---THREE
+
+# Tree
+```{r}
+arbolE<- read.nexus("t3.nex")
+```
+
+
+### Models to test
+## Pure birth models
+
+# 1 Pure birth model with constant speciation rate
+```{r}
+f.lamb_1<- function(t,y){y[1]}
+f.mu_1<- function(t,y){0}
+#
+lamb_par_1<-c(0.09)
+mu_par_1<-c()
+#
+result_pb_cst<-fit_bd(arbolE, tot_time, f.lamb = f.lamb_1, f.mu = f.mu_1, lamb_par_1, mu_par_1, f= 148/167, cst.lamb = TRUE, fix.mu = TRUE, dt=1e-3)
+#
+result_pb_cst
+```
+
+
+
+# 2e Pure birth model with exponential variation of the speciation rate with time
+```{r}
+f.lamb_2e<- function(t,y){y[1] * exp(y[2] * t)}
+f.mu_2e<- function(t,y){0}
+#
+lamb_par_2e<-c(0.09,0.02)
+mu_par_2e<-c()
+#
+result_pb_2e<-fit_bd(arbolE, tot_time, f.lamb = f.lamb_2e, f.mu = f.mu_2e, lamb_par_2e, mu_par_2e, f= 148/167, expo.lamb = TRUE, fix.mu = TRUE, dt=1e-3)
+#
+result_pb_2e
+```
+
+
+## Birth-death models
+
+# 3 Birth-death model with constant speciation rate and constant extinction
+```{r}
+f.lamb_3<-function(t,y){y[1]}
+f.mu_3<-function(t,y){y[1]}
+#
+lamb_par_3<-c(0.09)
+mu_par_3<-c(0.001)
+#
+result_bd_3<- fit_bd(arbolE, tot_time, f.lamb_3, f.mu_3, lamb_par_3, mu_par_3, f=148/167, cst.lamb = TRUE, cst.mu = TRUE, dt=1e-3)
+#
+result_bd_3
+```
+
+
+# 4e Birth death model with constant speciation rate and exponential variation in extinction rate
+```{r}
+f.lamb_4e<-function(t,y){y[1]}
+f.mu_4e<-function(t,y){y[1]*exp(y[2]*t)}
+#
+lamb_par_4e<- c(0.1)
+mu_par_4e<- c(0.02,0.002)
+#
+result_bd_4e<- fit_bd(arbolE, tot_time, f.lamb_4e, f.mu_4e, lamb_par_4e, mu_par_4e, f=148/167, cst.lamb = TRUE, expo.mu = TRUE, dt=1e-3)
+#
+result_bd_4e
+```
+
+
+# 5e Birth-death model with exponential variation in speciation rate and constant extinction
+```{r}
+f.lamb_5e<-function(t,y){y[1] * exp(y[2] * t)}
+f.mu_5e<-function(t,y){y[1]}
+#
+lamb_par_5e <- c(0.05, 0.01)
+mu_par_5e <-c(0.005)
+#
+result_bd_5e<- fit_bd(arbolE, tot_time, f.lamb = f.lamb_5e, f.mu = f.mu_5e, lamb_par_5e, mu_par_5e, f=148/167, expo.lamb = TRUE, cst.mu = TRUE, dt=1e-3)
+#
+result_bd_5e
+```
+
+
+# 6e Birth-death model with exponential variation in speciation rate and exponential variation in extinction rate
+```{r}
+f.lamb_6e<-function(t,y){y[1] * exp(y[2] * t)}
+f.mu_6e<-function(t,y){y[1] * exp(y[2] * t)}
+#
+lamb_par_6e <- c(0.05, 0.01)
+mu_par_6e <-c(0.005, 0.001)
+#
+result_bd_6e<- fit_bd(arbolE, tot_time, f.lamb = f.lamb_6e, f.mu = f.mu_6e, lamb_par_6e, mu_par_6e, f=148/167, expo.lamb = TRUE, expo.mu = TRUE, dt=1e-3)
+#
+result_bd_6e
+```
+
+
+
+# Find the best model
+# todos los modelos
+```{r}
+aiclist<- setNames(c(result_pb_cst$aicc, result_pb_2e$aicc, result_bd_3$aicc, result_bd_4e$aicc, result_bd_5e$aicc, result_bd_6e$aicc), c("cst", "2e", "3", "4e", "5e", "6e"))
+#
+aic.w(aiclist)
+```
+
+
+
+### ---FOUR
+
+# Tree
+```{r}
+arbolE<- read.nexus("t4.nex")
+```
+
+
+### Models to test
+## Pure birth models
+
+# 1 Pure birth model with constant speciation rate
+```{r}
+f.lamb_1<- function(t,y){y[1]}
+f.mu_1<- function(t,y){0}
+#
+lamb_par_1<-c(0.09)
+mu_par_1<-c()
+#
+result_pb_cst<-fit_bd(arbolE, tot_time, f.lamb = f.lamb_1, f.mu = f.mu_1, lamb_par_1, mu_par_1, f= 148/167, cst.lamb = TRUE, fix.mu = TRUE, dt=1e-3)
+#
+result_pb_cst
+```
+
+# 2e Pure birth model with exponential variation of the speciation rate with time
+```{r}
+f.lamb_2e<- function(t,y){y[1] * exp(y[2] * t)}
+f.mu_2e<- function(t,y){0}
+#
+lamb_par_2e<-c(0.09,0.02)
+mu_par_2e<-c()
+#
+result_pb_2e<-fit_bd(arbolE, tot_time, f.lamb = f.lamb_2e, f.mu = f.mu_2e, lamb_par_2e, mu_par_2e, f= 148/167, expo.lamb = TRUE, fix.mu = TRUE, dt=1e-3)
+#
+result_pb_2e
+```
+
+
+## Birth-death models
+
+# 3 Birth-death model with constant speciation rate and constant extinction
+```{r}
+f.lamb_3<-function(t,y){y[1]}
+f.mu_3<-function(t,y){y[1]}
+#
+lamb_par_3<-c(0.09)
+mu_par_3<-c(0.001)
+#
+result_bd_3<- fit_bd(arbolE, tot_time, f.lamb_3, f.mu_3, lamb_par_3, mu_par_3, f=148/167, cst.lamb = TRUE, cst.mu = TRUE, dt=1e-3)
+#
+result_bd_3
+```
+
+
+# 4e Birth death model with constant speciation rate and exponential variation in extinction rate
+```{r}
+f.lamb_4e<-function(t,y){y[1]}
+f.mu_4e<-function(t,y){y[1]*exp(y[2]*t)}
+#
+lamb_par_4e<- c(0.1)
+mu_par_4e<- c(0.02,0.002)
+#
+result_bd_4e<- fit_bd(arbolE, tot_time, f.lamb_4e, f.mu_4e, lamb_par_4e, mu_par_4e, f=148/167, cst.lamb = TRUE, expo.mu = TRUE, dt=1e-3)
+#
+result_bd_4e
+```
+
+
+# 5e Birth-death model with exponential variation in speciation rate and constant extinction
+```{r}
+f.lamb_5e<-function(t,y){y[1] * exp(y[2] * t)}
+f.mu_5e<-function(t,y){y[1]}
+#
+lamb_par_5e <- c(0.05, 0.01)
+mu_par_5e <-c(0.005)
+#
+result_bd_5e<- fit_bd(arbolE, tot_time, f.lamb = f.lamb_5e, f.mu = f.mu_5e, lamb_par_5e, mu_par_5e, f=148/167, expo.lamb = TRUE, cst.mu = TRUE, dt=1e-3)
+#
+result_bd_5e
+```
+
+
+# 6e Birth-death model with exponential variation in speciation rate and exponential variation in extinction rate
+```{r}
+f.lamb_6e<-function(t,y){y[1] * exp(y[2] * t)}
+f.mu_6e<-function(t,y){y[1] * exp(y[2] * t)}
+#
+lamb_par_6e <- c(0.05, 0.01)
+mu_par_6e <-c(0.005, 0.001)
+#
+result_bd_6e<- fit_bd(arbolE, tot_time, f.lamb = f.lamb_6e, f.mu = f.mu_6e, lamb_par_6e, mu_par_6e, f=148/167, expo.lamb = TRUE, expo.mu = TRUE, dt=1e-3)
+#
+result_bd_6e
+```
+
+
+# Find the best model
+# todos los modelos
+```{r}
+aiclist<- setNames(c(result_pb_cst$aicc, result_pb_2e$aicc, result_bd_3$aicc, result_bd_4e$aicc, result_bd_5e$aicc, result_bd_6e$aicc), c("cst", "2e", "3", "4e", "5e", "6e"))
+#
+aic.w(aiclist)
+```
+
+
+
+### ---FIVE
+
+# Tree
+```{r}
+arbolE<- read.nexus("t5.nex")
+```
+
+
+### Modelos a poner a prueba
+## Pure birth models
+
+# 1 Pure birth model with constant speciation rate
+```{r}
+f.lamb_1<- function(t,y){y[1]}
+f.mu_1<- function(t,y){0}
+#
+lamb_par_1<-c(0.09)
+mu_par_1<-c()
+#
+result_pb_cst<-fit_bd(arbolE, tot_time, f.lamb = f.lamb_1, f.mu = f.mu_1, lamb_par_1, mu_par_1, f= 148/167, cst.lamb = TRUE, fix.mu = TRUE, dt=1e-3)
+#
+result_pb_cst
+```
+
+
+# 2e Pure birth model with exponential variation of the speciation rate with time
+```{r}
+f.lamb_2e<- function(t,y){y[1] * exp(y[2] * t)}
+f.mu_2e<- function(t,y){0}
+#
+lamb_par_2e<-c(0.09,0.02)
+mu_par_2e<-c()
+#
+result_pb_2e<-fit_bd(arbolE, tot_time, f.lamb = f.lamb_2e, f.mu = f.mu_2e, lamb_par_2e, mu_par_2e, f= 148/167, expo.lamb = TRUE, fix.mu = TRUE, dt=1e-3)
+#
+result_pb_2e
+```
+
+
+## Birth-death models
+
+# 3 Birth-death model with constant speciation rate and constant extinction
+```{r}
+f.lamb_3<-function(t,y){y[1]}
+f.mu_3<-function(t,y){y[1]}
+#
+lamb_par_3<-c(0.09)
+mu_par_3<-c(0.001)
+#
+result_bd_3<- fit_bd(arbolE, tot_time, f.lamb_3, f.mu_3, lamb_par_3, mu_par_3, f=148/167, cst.lamb = TRUE, cst.mu = TRUE, dt=1e-3)
+#
+result_bd_3
+```
+
+
+# 4e Birth death model with constant speciation rate and exponential variation in extinction rate
+```{r}
+f.lamb_4e<-function(t,y){y[1]}
+f.mu_4e<-function(t,y){y[1]*exp(y[2]*t)}
+#
+lamb_par_4e<- c(0.1)
+mu_par_4e<- c(0.02,0.002)
+#
+result_bd_4e<- fit_bd(arbolE, tot_time, f.lamb_4e, f.mu_4e, lamb_par_4e, mu_par_4e, f=148/167, cst.lamb = TRUE, expo.mu = TRUE, dt=1e-3)
+#
+result_bd_4e
+```
+
+
+# 5e Birth-death model with exponential variation in speciation rate and constant extinction
+```{r}
+f.lamb_5e<-function(t,y){y[1] * exp(y[2] * t)}
+f.mu_5e<-function(t,y){y[1]}
+#
+lamb_par_5e <- c(0.05, 0.01)
+mu_par_5e <-c(0.005)
+#
+result_bd_5e<- fit_bd(arbolE, tot_time, f.lamb = f.lamb_5e, f.mu = f.mu_5e, lamb_par_5e, mu_par_5e, f=148/167, expo.lamb = TRUE, cst.mu = TRUE, dt=1e-3)
+#
+result_bd_5e
+```
+
+
+
+# 6e Birth-death model with exponential variation in speciation rate and exponential variation in extinction rate
+```{r}
+f.lamb_6e<-function(t,y){y[1] * exp(y[2] * t)}
+f.mu_6e<-function(t,y){y[1] * exp(y[2] * t)}
+#
+lamb_par_6e <- c(0.05, 0.01)
+mu_par_6e <-c(0.005, 0.001)
+#
+result_bd_6e<- fit_bd(arbolE, tot_time, f.lamb = f.lamb_6e, f.mu = f.mu_6e, lamb_par_6e, mu_par_6e, f=148/167, expo.lamb = TRUE, expo.mu = TRUE, dt=1e-3)
+#
+result_bd_6e
+```
+
+
+
+# Find the best model
+# todos los modelos
+```{r}
+aiclist<- setNames(c(result_pb_cst$aicc, result_pb_2e$aicc, result_bd_3$aicc, result_bd_4e$aicc, result_bd_5e$aicc, result_bd_6e$aicc), c("cst", "2e", "3", "4e", "5e", "6e"))
+#
+aic.w(aiclist)
+```
+
+
+### ---SIX
+
+# Tree
+```{r}
+arbolE<- read.nexus("t6.nex")
+```
+
+
+### Models to test
+## Pure birth models
+
+# 1 Pure birth model with constant speciation rate
+```{r}
+f.lamb_1<- function(t,y){y[1]}
+f.mu_1<- function(t,y){0}
+#
+lamb_par_1<-c(0.09)
+mu_par_1<-c()
+#
+result_pb_cst<-fit_bd(arbolE, tot_time, f.lamb = f.lamb_1, f.mu = f.mu_1, lamb_par_1, mu_par_1, f= 148/167, cst.lamb = TRUE, fix.mu = TRUE, dt=1e-3)
+#
+result_pb_cst
+```
+
+
+# 2e Pure birth model with exponential variation of the speciation rate with time
+```{r}
+f.lamb_2e<- function(t,y){y[1] * exp(y[2] * t)}
+f.mu_2e<- function(t,y){0}
+#
+lamb_par_2e<-c(0.09,0.02)
+mu_par_2e<-c()
+#
+result_pb_2e<-fit_bd(arbolE, tot_time, f.lamb = f.lamb_2e, f.mu = f.mu_2e, lamb_par_2e, mu_par_2e, f= 148/167, expo.lamb = TRUE, fix.mu = TRUE, dt=1e-3)
+#
+result_pb_2e
+```
+
+
+## Birth-death models
+
+# 3 Birth-death model with constant speciation rate and constant extinction
+```{r}
+f.lamb_3<-function(t,y){y[1]}
+f.mu_3<-function(t,y){y[1]}
+#
+lamb_par_3<-c(0.09)
+mu_par_3<-c(0.001)
+#
+result_bd_3<- fit_bd(arbolE, tot_time, f.lamb_3, f.mu_3, lamb_par_3, mu_par_3, f=148/167, cst.lamb = TRUE, cst.mu = TRUE, dt=1e-3)
+#
+result_bd_3
+```
+
+
+# 4e Birth death model with constant speciation rate and exponential variation in extinction rate
+```{r}
+f.lamb_4e<-function(t,y){y[1]}
+f.mu_4e<-function(t,y){y[1]*exp(y[2]*t)}
+#
+lamb_par_4e<- c(0.1)
+mu_par_4e<- c(0.02,0.002)
+#
+result_bd_4e<- fit_bd(arbolE, tot_time, f.lamb_4e, f.mu_4e, lamb_par_4e, mu_par_4e, f=148/167, cst.lamb = TRUE, expo.mu = TRUE, dt=1e-3)
+#
+result_bd_4e
+```
+
+
+# 5e Birth-death model with exponential variation in speciation rate and constant extinction
+```{r}
+f.lamb_5e<-function(t,y){y[1] * exp(y[2] * t)}
+f.mu_5e<-function(t,y){y[1]}
+#
+lamb_par_5e <- c(0.05, 0.01)
+mu_par_5e <-c(0.005)
+#
+result_bd_5e<- fit_bd(arbolE, tot_time, f.lamb = f.lamb_5e, f.mu = f.mu_5e, lamb_par_5e, mu_par_5e, f=148/167, expo.lamb = TRUE, cst.mu = TRUE, dt=1e-3)
+#
+result_bd_5e
+```
+
+
+# 6e Birth-death model with exponential variation in speciation rate and exponential variation in extinction rate
+```{r}
+f.lamb_6e<-function(t,y){y[1] * exp(y[2] * t)}
+f.mu_6e<-function(t,y){y[1] * exp(y[2] * t)}
+#
+lamb_par_6e <- c(0.05, 0.01)
+mu_par_6e <-c(0.005, 0.001)
+#
+result_bd_6e<- fit_bd(arbolE, tot_time, f.lamb = f.lamb_6e, f.mu = f.mu_6e, lamb_par_6e, mu_par_6e, f=148/167, expo.lamb = TRUE, expo.mu = TRUE, dt=1e-3)
+#
+result_bd_6e
+```
+
+
+# Find the best model
+# todos los modelos
+```{r}
+aiclist<- setNames(c(result_pb_cst$aicc, result_pb_2e$aicc, result_bd_3$aicc, result_bd_4e$aicc, result_bd_5e$aicc, result_bd_6e$aicc), c("cst", "2e", "3", "4e", "5e", "6e"))
+#
+aic.w(aiclist)
+```
+
+
+### ---SEVEN
+
+# Tree
+```{r}
+arbolE<- read.nexus("t7.nex")
+```
+
+
+### Modelos a poner a prueba
+## Pure birth models
+
+# 1 Pure birth model with constant speciation rate
+```{r}
+f.lamb_1<- function(t,y){y[1]}
+f.mu_1<- function(t,y){0}
+#
+lamb_par_1<-c(0.09)
+mu_par_1<-c()
+#
+result_pb_cst<-fit_bd(arbolE, tot_time, f.lamb = f.lamb_1, f.mu = f.mu_1, lamb_par_1, mu_par_1, f= 148/167, cst.lamb = TRUE, fix.mu = TRUE, dt=1e-3)
+#
+result_pb_cst
+```
+
+
+# 2e Pure birth model with exponential variation of the speciation rate with time
+```{r}
+f.lamb_2e<- function(t,y){y[1] * exp(y[2] * t)}
+f.mu_2e<- function(t,y){0}
+#
+lamb_par_2e<-c(0.09,0.02)
+mu_par_2e<-c()
+#
+result_pb_2e<-fit_bd(arbolE, tot_time, f.lamb = f.lamb_2e, f.mu = f.mu_2e, lamb_par_2e, mu_par_2e, f= 148/167, expo.lamb = TRUE, fix.mu = TRUE, dt=1e-3)
+#
+result_pb_2e
+```
+
+
+
+## Birth-death models
+
+# 3 Birth-death model with constant speciation rate and constant extinction
+```{r}
+f.lamb_3<-function(t,y){y[1]}
+f.mu_3<-function(t,y){y[1]}
+#
+lamb_par_3<-c(0.09)
+mu_par_3<-c(0.001)
+#
+result_bd_3<- fit_bd(arbolE, tot_time, f.lamb_3, f.mu_3, lamb_par_3, mu_par_3, f=148/167, cst.lamb = TRUE, cst.mu = TRUE, dt=1e-3)
+#
+result_bd_3
+```
+
+
+# 4e Birth death model with constant speciation rate and exponential variation in extinction rate
+```{r}
+f.lamb_4e<-function(t,y){y[1]}
+f.mu_4e<-function(t,y){y[1]*exp(y[2]*t)}
+#
+lamb_par_4e<- c(0.1)
+mu_par_4e<- c(0.02,0.002)
+#
+result_bd_4e<- fit_bd(arbolE, tot_time, f.lamb_4e, f.mu_4e, lamb_par_4e, mu_par_4e, f=148/167, cst.lamb = TRUE, expo.mu = TRUE, dt=1e-3)
+#
+result_bd_4e
+```
+
+
+# 5e Birth-death model with exponential variation in speciation rate and constant extinction
+```{r}
+f.lamb_5e<-function(t,y){y[1] * exp(y[2] * t)}
+f.mu_5e<-function(t,y){y[1]}
+#
+lamb_par_5e <- c(0.05, 0.01)
+mu_par_5e <-c(0.005)
+#
+result_bd_5e<- fit_bd(arbolE, tot_time, f.lamb = f.lamb_5e, f.mu = f.mu_5e, lamb_par_5e, mu_par_5e, f=148/167, expo.lamb = TRUE, cst.mu = TRUE, dt=1e-3)
+#
+result_bd_5e
+```
+
+
+# 6e Birth-death model with exponential variation in speciation rate and exponential variation in extinction rate
+```{r}
+f.lamb_6e<-function(t,y){y[1] * exp(y[2] * t)}
+f.mu_6e<-function(t,y){y[1] * exp(y[2] * t)}
+#
+lamb_par_6e <- c(0.05, 0.01)
+mu_par_6e <-c(0.005, 0.001)
+#
+result_bd_6e<- fit_bd(arbolE, tot_time, f.lamb = f.lamb_6e, f.mu = f.mu_6e, lamb_par_6e, mu_par_6e, f=148/167, expo.lamb = TRUE, expo.mu = TRUE, dt=1e-3)
+#
+result_bd_6e
+```
+
+
+
+# Find the best model
+# todos los modelos
+```{r}
+aiclist<- setNames(c(result_pb_cst$aicc, result_pb_2e$aicc, result_bd_3$aicc, result_bd_4e$aicc, result_bd_5e$aicc, result_bd_6e$aicc), c("cst", "2e", "3", "4e", "5e", "6e"))
+#
+aic.w(aiclist)
+```
+
+
+
+### ---EIGHT
+
+# Tree
+```{r}
+arbolE<- read.nexus("t8.nex")
+```
+
+
+### Models to test
+## Pure birth models
+
+# 1 Pure birth model with constant speciation rate
+```{r}
+f.lamb_1<- function(t,y){y[1]}
+f.mu_1<- function(t,y){0}
+#
+lamb_par_1<-c(0.09)
+mu_par_1<-c()
+#
+result_pb_cst<-fit_bd(arbolE, tot_time, f.lamb = f.lamb_1, f.mu = f.mu_1, lamb_par_1, mu_par_1, f= 148/167, cst.lamb = TRUE, fix.mu = TRUE, dt=1e-3)
+#
+result_pb_cst
+```
+
+
+# 2e Pure birth model with exponential variation of the speciation rate with time
+```{r}
+f.lamb_2e<- function(t,y){y[1] * exp(y[2] * t)}
+f.mu_2e<- function(t,y){0}
+#
+lamb_par_2e<-c(0.09,0.02)
+mu_par_2e<-c()
+#
+result_pb_2e<-fit_bd(arbolE, tot_time, f.lamb = f.lamb_2e, f.mu = f.mu_2e, lamb_par_2e, mu_par_2e, f= 148/167, expo.lamb = TRUE, fix.mu = TRUE, dt=1e-3)
+#
+result_pb_2e
+```
+
+
+## Birth-death models
+
+# 3 Birth-death model with constant speciation rate and constant extinction
+```{r}
+f.lamb_3<-function(t,y){y[1]}
+f.mu_3<-function(t,y){y[1]}
+#
+lamb_par_3<-c(0.09)
+mu_par_3<-c(0.001)
+#
+result_bd_3<- fit_bd(arbolE, tot_time, f.lamb_3, f.mu_3, lamb_par_3, mu_par_3, f=148/167, cst.lamb = TRUE, cst.mu = TRUE, dt=1e-3)
+#
+result_bd_3
+```
+
+
+# 4e Birth death model with constant speciation rate and exponential variation in extinction rate
+```{r}
+f.lamb_4e<-function(t,y){y[1]}
+f.mu_4e<-function(t,y){y[1]*exp(y[2]*t)}
+#
+lamb_par_4e<- c(0.1)
+mu_par_4e<- c(0.02,0.002)
+#
+result_bd_4e<- fit_bd(arbolE, tot_time, f.lamb_4e, f.mu_4e, lamb_par_4e, mu_par_4e, f=148/167, cst.lamb = TRUE, expo.mu = TRUE, dt=1e-3)
+#
+result_bd_4e
+```
+
+
+# 5e Birth-death model with exponential variation in speciation rate and constant extinction
+```{r}
+f.lamb_5e<-function(t,y){y[1] * exp(y[2] * t)}
+f.mu_5e<-function(t,y){y[1]}
+#
+lamb_par_5e <- c(0.05, 0.01)
+mu_par_5e <-c(0.005)
+#
+result_bd_5e<- fit_bd(arbolE, tot_time, f.lamb = f.lamb_5e, f.mu = f.mu_5e, lamb_par_5e, mu_par_5e, f=148/167, expo.lamb = TRUE, cst.mu = TRUE, dt=1e-3)
+#
+result_bd_5e
+```
+
+
+# 6e Birth-death model with exponential variation in speciation rate and exponential variation in extinction rate
+```{r}
+f.lamb_6e<-function(t,y){y[1] * exp(y[2] * t)}
+f.mu_6e<-function(t,y){y[1] * exp(y[2] * t)}
+#
+lamb_par_6e <- c(0.05, 0.01)
+mu_par_6e <-c(0.005, 0.001)
+#
+result_bd_6e<- fit_bd(arbolE, tot_time, f.lamb = f.lamb_6e, f.mu = f.mu_6e, lamb_par_6e, mu_par_6e, f=148/167, expo.lamb = TRUE, expo.mu = TRUE, dt=1e-3)
+#
+result_bd_6e
+```
+
+
+
+# Find the best model
+# todos los modelos
+```{r}
+aiclist<- setNames(c(result_pb_cst$aicc, result_pb_2e$aicc, result_bd_3$aicc, result_bd_4e$aicc, result_bd_5e$aicc, result_bd_6e$aicc), c("cst",  "2e", "3", "4e", "5e", "6e"))
+#
+aic.w(aiclist)
+```
+
+
+
+### ---NINE
+
+# Tree  
+```{r}
+arbolE<- read.nexus("t9.nex")
+```
+
+
+### Models to test
+## Pure birth models
+
+# 1 Pure birth model with constant speciation rate
+```{r}
+f.lamb_1<- function(t,y){y[1]}
+f.mu_1<- function(t,y){0}
+#
+lamb_par_1<-c(0.09)
+mu_par_1<-c()
+#
+result_pb_cst<-fit_bd(arbolE, tot_time, f.lamb = f.lamb_1, f.mu = f.mu_1, lamb_par_1, mu_par_1, f= 148/167, cst.lamb = TRUE, fix.mu = TRUE, dt=1e-3)
+#
+result_pb_cst
+```
+
+
+# 2e Pure birth model with exponential variation of the speciation rate with time
+```{r}
+f.lamb_2e<- function(t,y){y[1] * exp(y[2] * t)}
+f.mu_2e<- function(t,y){0}
+#
+lamb_par_2e<-c(0.09,0.02)
+mu_par_2e<-c()
+#
+result_pb_2e<-fit_bd(arbolE, tot_time, f.lamb = f.lamb_2e, f.mu = f.mu_2e, lamb_par_2e, mu_par_2e, f= 148/167, expo.lamb = TRUE, fix.mu = TRUE, dt=1e-3)
+#
+result_pb_2e
+```
+
+
+## Birth-death models
+
+# 3 Birth-death model with constant speciation rate and constant extinction
+```{r}
+f.lamb_3<-function(t,y){y[1]}
+f.mu_3<-function(t,y){y[1]}
+#
+lamb_par_3<-c(0.09)
+mu_par_3<-c(0.001)
+#
+result_bd_3<- fit_bd(arbolE, tot_time, f.lamb_3, f.mu_3, lamb_par_3, mu_par_3, f=148/167, cst.lamb = TRUE, cst.mu = TRUE, dt=1e-3)
+#
+result_bd_3
+```
+
+
+# 4e Birth death model with constant speciation rate and exponential variation in extinction rate
+```{r}
+f.lamb_4e<-function(t,y){y[1]}
+f.mu_4e<-function(t,y){y[1]*exp(y[2]*t)}
+#
+lamb_par_4e<- c(0.1)
+mu_par_4e<- c(0.02,0.002)
+#
+result_bd_4e<- fit_bd(arbolE, tot_time, f.lamb_4e, f.mu_4e, lamb_par_4e, mu_par_4e, f=148/167, cst.lamb = TRUE, expo.mu = TRUE, dt=1e-3)
+#
+result_bd_4e
+```
+
+
+# 5e Birth-death model with exponential variation in speciation rate and constant extinction
+```{r}
+f.lamb_5e<-function(t,y){y[1] * exp(y[2] * t)}
+f.mu_5e<-function(t,y){y[1]}
+#
+lamb_par_5e <- c(0.05, 0.01)
+mu_par_5e <-c(0.005)
+#
+result_bd_5e<- fit_bd(arbolE, tot_time, f.lamb = f.lamb_5e, f.mu = f.mu_5e, lamb_par_5e, mu_par_5e, f=148/167, expo.lamb = TRUE, cst.mu = TRUE, dt=1e-3)
+#
+result_bd_5e
+```
+
+
+# 6e Birth-death model with exponential variation in speciation rate and exponential variation in extinction rate
+```{r}
+f.lamb_6e<-function(t,y){y[1] * exp(y[2] * t)}
+f.mu_6e<-function(t,y){y[1] * exp(y[2] * t)}
+#
+lamb_par_6e <- c(0.05, 0.01)
+mu_par_6e <-c(0.005, 0.001)
+#
+result_bd_6e<- fit_bd(arbolE, tot_time, f.lamb = f.lamb_6e, f.mu = f.mu_6e, lamb_par_6e, mu_par_6e, f=148/167, expo.lamb = TRUE, expo.mu = TRUE, dt=1e-3)
+#
+result_bd_6e
+```
+
+
+
+# Find the best model
+# todos los modelos
+```{r}
+aiclist<- setNames(c(result_pb_cst$aicc, result_pb_2e$aicc, result_bd_3$aicc, result_bd_4e$aicc, result_bd_5e$aicc, result_bd_6e$aicc), c("cst", "2e", "3", "4e", "5e", "6e"))
+#
+aic.w(aiclist)
+```
+
+
+
+### ---TEN
+
+# Tree
+```{r}
+arbolE<- read.nexus("t10.nex")
+```
+
+
+### Models to test
+## Pure birth models
+
+# 1 Pure birth model with constant speciation rate
+```{r}
+f.lamb_1<- function(t,y){y[1]}
+f.mu_1<- function(t,y){0}
+#
+lamb_par_1<-c(0.09)
+mu_par_1<-c()
+#
+result_pb_cst<-fit_bd(arbolE, tot_time, f.lamb = f.lamb_1, f.mu = f.mu_1, lamb_par_1, mu_par_1, f= 148/167, cst.lamb = TRUE, fix.mu = TRUE, dt=1e-3)
+#
+result_pb_cst
+```
+
+
+
+# 2e Pure birth model with exponential variation of the speciation rate with time
+```{r}
+f.lamb_2e<- function(t,y){y[1] * exp(y[2] * t)}
+f.mu_2e<- function(t,y){0}
+#
+lamb_par_2e<-c(0.09,0.02)
+mu_par_2e<-c()
+#
+result_pb_2e<-fit_bd(arbolE, tot_time, f.lamb = f.lamb_2e, f.mu = f.mu_2e, lamb_par_2e, mu_par_2e, f= 148/167, expo.lamb = TRUE, fix.mu = TRUE, dt=1e-3)
+#
+result_pb_2e
+```
+
+
+
+## Birth-death models
+
+# 3 Birth-death model with constant speciation rate and constant extinction
+```{r}
+f.lamb_3<-function(t,y){y[1]}
+f.mu_3<-function(t,y){y[1]}
+#
+lamb_par_3<-c(0.09)
+mu_par_3<-c(0.001)
+#
+result_bd_3<- fit_bd(arbolE, tot_time, f.lamb_3, f.mu_3, lamb_par_3, mu_par_3, f=148/167, cst.lamb = TRUE, cst.mu = TRUE, dt=1e-3)
+#
+result_bd_3
+```
+
+
+
+# 4e Birth death model with constant speciation rate and exponential variation in extinction rate
+```{r}
+f.lamb_4e<-function(t,y){y[1]}
+f.mu_4e<-function(t,y){y[1]*exp(y[2]*t)}
+#
+lamb_par_4e<- c(0.1)
+mu_par_4e<- c(0.02,0.002)
+#
+result_bd_4e<- fit_bd(arbolE, tot_time, f.lamb_4e, f.mu_4e, lamb_par_4e, mu_par_4e, f=148/167, cst.lamb = TRUE, expo.mu = TRUE, dt=1e-3)
+#
+result_bd_4e
+```
+
+
+
+
+# 5e Birth-death model with exponential variation in speciation rate and constant extinction
+```{r}
+f.lamb_5e<-function(t,y){y[1] * exp(y[2] * t)}
+f.mu_5e<-function(t,y){y[1]}
+#
+lamb_par_5e <- c(0.05, 0.01)
+mu_par_5e <-c(0.005)
+#
+result_bd_5e<- fit_bd(arbolE, tot_time, f.lamb = f.lamb_5e, f.mu = f.mu_5e, lamb_par_5e, mu_par_5e, f=148/167, expo.lamb = TRUE, cst.mu = TRUE, dt=1e-3)
+#
+result_bd_5e
+```
+
+
+
+# 6e Birth-death model with exponential variation in speciation rate and exponential variation in extinction rate
+```{r}
+f.lamb_6e<-function(t,y){y[1] * exp(y[2] * t)}
+f.mu_6e<-function(t,y){y[1] * exp(y[2] * t)}
+#
+lamb_par_6e <- c(0.05, 0.01)
+mu_par_6e <-c(0.005, 0.001)
+#
+result_bd_6e<- fit_bd(arbolE, tot_time, f.lamb = f.lamb_6e, f.mu = f.mu_6e, lamb_par_6e, mu_par_6e, f=148/167, expo.lamb = TRUE, expo.mu = TRUE, dt=1e-3)
+#
+result_bd_6e
+```
+
+
+
+# Find the best model
+# todos los modelos
+```{r}
+aiclist<- setNames(c(result_pb_cst$aicc, result_pb_2e$aicc, result_bd_3$aicc, result_bd_4e$aicc, result_bd_5e$aicc, result_bd_6e$aicc), c("cst",  "2e", "3", "4e", "5e", "6e"))
+#
+aic.w(aiclist)
+```
+
+
+
+### ---ELEVEN
+
+# Tree
+```{r}
+arbolE<- read.nexus("t11.nex")
+```
+
+
+### Models to test
+## Pure birth models
+
+# 1 Pure birth model with constant speciation rate
+```{r}
+f.lamb_1<- function(t,y){y[1]}
+f.mu_1<- function(t,y){0}
+#
+lamb_par_1<-c(0.09)
+mu_par_1<-c()
+#
+result_pb_cst<-fit_bd(arbolE, tot_time, f.lamb = f.lamb_1, f.mu = f.mu_1, lamb_par_1, mu_par_1, f= 148/167, cst.lamb = TRUE, fix.mu = TRUE, dt=1e-3)
+#
+result_pb_cst
+```
+
+
+# 2e Pure birth model with exponential variation of the speciation rate with time
+```{r}
+f.lamb_2e<- function(t,y){y[1] * exp(y[2] * t)}
+f.mu_2e<- function(t,y){0}
+#
+lamb_par_2e<-c(0.09,0.02)
+mu_par_2e<-c()
+#
+result_pb_2e<-fit_bd(arbolE, tot_time, f.lamb = f.lamb_2e, f.mu = f.mu_2e, lamb_par_2e, mu_par_2e, f= 148/167, expo.lamb = TRUE, fix.mu = TRUE, dt=1e-3)
+#
+result_pb_2e
+```
+
+
+## Birth-death models
+
+# 3 Birth-death model with constant speciation rate and constant extinction
+```{r}
+f.lamb_3<-function(t,y){y[1]}
+f.mu_3<-function(t,y){y[1]}
+#
+lamb_par_3<-c(0.09)
+mu_par_3<-c(0.001)
+#
+result_bd_3<- fit_bd(arbolE, tot_time, f.lamb_3, f.mu_3, lamb_par_3, mu_par_3, f=148/167, cst.lamb = TRUE, cst.mu = TRUE, dt=1e-3)
+#
+result_bd_3
+```
+
+
+# 4e Birth death model with constant speciation rate and exponential variation in extinction rate
+```{r}
+f.lamb_4e<-function(t,y){y[1]}
+f.mu_4e<-function(t,y){y[1]*exp(y[2]*t)}
+#
+lamb_par_4e<- c(0.1)
+mu_par_4e<- c(0.02,0.002)
+#
+result_bd_4e<- fit_bd(arbolE, tot_time, f.lamb_4e, f.mu_4e, lamb_par_4e, mu_par_4e, f=148/167, cst.lamb = TRUE, expo.mu = TRUE, dt=1e-3)
+#
+result_bd_4e
+```
+
+
+# 5e Birth-death model with exponential variation in speciation rate and constant extinction
+```{r}
+f.lamb_5e<-function(t,y){y[1] * exp(y[2] * t)}
+f.mu_5e<-function(t,y){y[1]}
+#
+lamb_par_5e <- c(0.05, 0.01)
+mu_par_5e <-c(0.005)
+#
+result_bd_5e<- fit_bd(arbolE, tot_time, f.lamb = f.lamb_5e, f.mu = f.mu_5e, lamb_par_5e, mu_par_5e, f=148/167, expo.lamb = TRUE, cst.mu = TRUE, dt=1e-3)
+#
+result_bd_5e
+```
+
+
+# 6e Birth-death model with exponential variation in speciation rate and exponential variation in extinction rate
+```{r}
+f.lamb_6e<-function(t,y){y[1] * exp(y[2] * t)}
+f.mu_6e<-function(t,y){y[1] * exp(y[2] * t)}
+#
+lamb_par_6e <- c(0.05, 0.01)
+mu_par_6e <-c(0.005, 0.001)
+#
+result_bd_6e<- fit_bd(arbolE, tot_time, f.lamb = f.lamb_6e, f.mu = f.mu_6e, lamb_par_6e, mu_par_6e, f=148/167, expo.lamb = TRUE, expo.mu = TRUE, dt=1e-3)
+#
+result_bd_6e
+```
+
+
+# Find the best model
+# todos los modelos
+```{r}
+aiclist<- setNames(c(result_pb_cst$aicc, result_pb_2e$aicc, result_bd_3$aicc, result_bd_4e$aicc, result_bd_5e$aicc, result_bd_6e$aicc), c("cst", "2e", "3", "4e", "5e", "6e"))
+#
+aic.w(aiclist)
+```
+
+
+
+### ---TWELVE
+
+# Tree
+```{r}
+arbolE<- read.nexus("t12.nex")
+```
+
+
+### Models to test
+## Pure birth models
+
+# 1 Pure birth model with constant speciation rate
+```{r}
+f.lamb_1<- function(t,y){y[1]}
+f.mu_1<- function(t,y){0}
+#
+lamb_par_1<-c(0.09)
+mu_par_1<-c()
+#
+result_pb_cst<-fit_bd(arbolE, tot_time, f.lamb = f.lamb_1, f.mu = f.mu_1, lamb_par_1, mu_par_1, f= 148/167, cst.lamb = TRUE, fix.mu = TRUE, dt=1e-3)
+#
+result_pb_cst
+```
+
+
+# 2e Pure birth model with exponential variation of the speciation rate with time
+```{r}
+f.lamb_2e<- function(t,y){y[1] * exp(y[2] * t)}
+f.mu_2e<- function(t,y){0}
+#
+lamb_par_2e<-c(0.09,0.02)
+mu_par_2e<-c()
+#
+result_pb_2e<-fit_bd(arbolE, tot_time, f.lamb = f.lamb_2e, f.mu = f.mu_2e, lamb_par_2e, mu_par_2e, f= 148/167, expo.lamb = TRUE, fix.mu = TRUE, dt=1e-3)
+#
+result_pb_2e
+```
+
+
+## Birth-death models
+
+# 3 Birth-death model with constant speciation rate and constant extinction
+```{r}
+f.lamb_3<-function(t,y){y[1]}
+f.mu_3<-function(t,y){y[1]}
+#
+lamb_par_3<-c(0.09)
+mu_par_3<-c(0.001)
+#
+result_bd_3<- fit_bd(arbolE, tot_time, f.lamb_3, f.mu_3, lamb_par_3, mu_par_3, f=148/167, cst.lamb = TRUE, cst.mu = TRUE, dt=1e-3)
+#
+result_bd_3
+```
+
+
+# 4e Birth death model with constant speciation rate and exponential variation in extinction rate
+```{r}
+f.lamb_4e<-function(t,y){y[1]}
+f.mu_4e<-function(t,y){y[1]*exp(y[2]*t)}
+#
+lamb_par_4e<- c(0.1)
+mu_par_4e<- c(0.02,0.002)
+#
+result_bd_4e<- fit_bd(arbolE, tot_time, f.lamb_4e, f.mu_4e, lamb_par_4e, mu_par_4e, f=148/167, cst.lamb = TRUE, expo.mu = TRUE, dt=1e-3)
+#
+result_bd_4e
+```
+
+
+# 5e Birth-death model with exponential variation in speciation rate and constant extinction
+```{r}
+f.lamb_5e<-function(t,y){y[1] * exp(y[2] * t)}
+f.mu_5e<-function(t,y){y[1]}
+#
+lamb_par_5e <- c(0.05, 0.01)
+mu_par_5e <-c(0.005)
+#
+result_bd_5e<- fit_bd(arbolE, tot_time, f.lamb = f.lamb_5e, f.mu = f.mu_5e, lamb_par_5e, mu_par_5e, f=148/167, expo.lamb = TRUE, cst.mu = TRUE, dt=1e-3)
+#
+result_bd_5e
+```
+
+
+# 6e Birth-death model with exponential variation in speciation rate and exponential variation in extinction rate
+```{r}
+f.lamb_6e<-function(t,y){y[1] * exp(y[2] * t)}
+f.mu_6e<-function(t,y){y[1] * exp(y[2] * t)}
+#
+lamb_par_6e <- c(0.05, 0.01)
+mu_par_6e <-c(0.005, 0.001)
+#
+result_bd_6e<- fit_bd(arbolE, tot_time, f.lamb = f.lamb_6e, f.mu = f.mu_6e, lamb_par_6e, mu_par_6e, f=148/167, expo.lamb = TRUE, expo.mu = TRUE, dt=1e-3)
+#
+result_bd_6e
+```
+
+# Find the best model
+# todos los modelos
+```{r}
+aiclist<- setNames(c(result_pb_cst$aicc, result_pb_2e$aicc, result_bd_3$aicc, result_bd_4e$aicc, result_bd_5e$aicc, result_bd_6e$aicc), c("cst", "2e", "3", "4e", "5e", "6e"))
+#
+aic.w(aiclist)
+```
+
+
+
+### ---THIRTEEN
+
+# Tree
+```{r}
+arbolE<- read.nexus("t13.nex")
+```
+
+
+### Models to test
+## Pure birth models
+
+# 1 Pure birth model with constant speciation rate
+```{r}
+f.lamb_1<- function(t,y){y[1]}
+f.mu_1<- function(t,y){0}
+#
+lamb_par_1<-c(0.09)
+mu_par_1<-c()
+#
+result_pb_cst<-fit_bd(arbolE, tot_time, f.lamb = f.lamb_1, f.mu = f.mu_1, lamb_par_1, mu_par_1, f= 148/167, cst.lamb = TRUE, fix.mu = TRUE, dt=1e-3)
+#
+result_pb_cst
+```
+
+
+# 2e Pure birth model with exponential variation of the speciation rate with time
+```{r}
+f.lamb_2e<- function(t,y){y[1] * exp(y[2] * t)}
+f.mu_2e<- function(t,y){0}
+#
+lamb_par_2e<-c(0.09,0.02)
+mu_par_2e<-c()
+#
+result_pb_2e<-fit_bd(arbolE, tot_time, f.lamb = f.lamb_2e, f.mu = f.mu_2e, lamb_par_2e, mu_par_2e, f= 148/167, expo.lamb = TRUE, fix.mu = TRUE, dt=1e-3)
+#
+result_pb_2e
+```
+
+
+## Birth-death models
+
+# 3 Birth-death model with constant speciation rate and constant extinction
+```{r}
+f.lamb_3<-function(t,y){y[1]}
+f.mu_3<-function(t,y){y[1]}
+#
+lamb_par_3<-c(0.09)
+mu_par_3<-c(0.001)
+#
+result_bd_3<- fit_bd(arbolE, tot_time, f.lamb_3, f.mu_3, lamb_par_3, mu_par_3, f=148/167, cst.lamb = TRUE, cst.mu = TRUE, dt=1e-3)
+#
+result_bd_3
+```
+
+
+# 4e Birth death model with constant speciation rate and exponential variation in extinction rate
+```{r}
+f.lamb_4e<-function(t,y){y[1]}
+f.mu_4e<-function(t,y){y[1]*exp(y[2]*t)}
+#
+lamb_par_4e<- c(0.1)
+mu_par_4e<- c(0.02,0.002)
+#
+result_bd_4e<- fit_bd(arbolE, tot_time, f.lamb_4e, f.mu_4e, lamb_par_4e, mu_par_4e, f=148/167, cst.lamb = TRUE, expo.mu = TRUE, dt=1e-3)
+#
+result_bd_4e
+```
+
+
+# 5e Birth-death model with exponential variation in speciation rate and constant extinction
+```{r}
+f.lamb_5e<-function(t,y){y[1] * exp(y[2] * t)}
+f.mu_5e<-function(t,y){y[1]}
+#
+lamb_par_5e <- c(0.05, 0.01)
+mu_par_5e <-c(0.005)
+#
+result_bd_5e<- fit_bd(arbolE, tot_time, f.lamb = f.lamb_5e, f.mu = f.mu_5e, lamb_par_5e, mu_par_5e, f=148/167, expo.lamb = TRUE, cst.mu = TRUE, dt=1e-3)
+#
+result_bd_5e
+```
+
+
+# 6e Birth-death model with exponential variation in speciation rate and exponential variation in extinction rate
+```{r}
+f.lamb_6e<-function(t,y){y[1] * exp(y[2] * t)}
+f.mu_6e<-function(t,y){y[1] * exp(y[2] * t)}
+#
+lamb_par_6e <- c(0.05, 0.01)
+mu_par_6e <-c(0.005, 0.001)
+#
+result_bd_6e<- fit_bd(arbolE, tot_time, f.lamb = f.lamb_6e, f.mu = f.mu_6e, lamb_par_6e, mu_par_6e, f=148/167, expo.lamb = TRUE, expo.mu = TRUE, dt=1e-3)
+#
+result_bd_6e
+```
+
+
+
+# Find the best model
+# todos los modelos
+```{r}
+aiclist<- setNames(c(result_pb_cst$aicc, result_pb_2e$aicc, result_bd_3$aicc, result_bd_4e$aicc, result_bd_5e$aicc, result_bd_6e$aicc), c("cst", "2e", "3", "4e", "5e", "6e"))
+#
+aic.w(aiclist)
+```
+
+
+
+### ---FOURTEEN
+
+# Filogenia
+```{r}
+arbolE<- read.nexus("t14.nex")
+```
+
+
+### Modelos a poner a prueba
+## Pure birth models
+
+# 1 Pure birth model with constant speciation rate
+```{r}
+f.lamb_1<- function(t,y){y[1]}
+f.mu_1<- function(t,y){0}
+#
+lamb_par_1<-c(0.09)
+mu_par_1<-c()
+#
+result_pb_cst<-fit_bd(arbolE, tot_time, f.lamb = f.lamb_1, f.mu = f.mu_1, lamb_par_1, mu_par_1, f= 148/167, cst.lamb = TRUE, fix.mu = TRUE, dt=1e-3)
+#
+result_pb_cst
+```
+
+
+
+# 2e Pure birth model with exponential variation of the speciation rate with time
+```{r}
+f.lamb_2e<- function(t,y){y[1] * exp(y[2] * t)}
+f.mu_2e<- function(t,y){0}
+#
+lamb_par_2e<-c(0.09,0.02)
+mu_par_2e<-c()
+#
+result_pb_2e<-fit_bd(arbolE, tot_time, f.lamb = f.lamb_2e, f.mu = f.mu_2e, lamb_par_2e, mu_par_2e, f= 148/167, expo.lamb = TRUE, fix.mu = TRUE, dt=1e-3)
+#
+result_pb_2e
+```
+
+
+
+## Birth-death models
+
+# 3 Birth-death model with constant speciation rate and constant extinction
+```{r}
+f.lamb_3<-function(t,y){y[1]}
+f.mu_3<-function(t,y){y[1]}
+#
+lamb_par_3<-c(0.09)
+mu_par_3<-c(0.001)
+#
+result_bd_3<- fit_bd(arbolE, tot_time, f.lamb_3, f.mu_3, lamb_par_3, mu_par_3, f=148/167, cst.lamb = TRUE, cst.mu = TRUE, dt=1e-3)
+#
+result_bd_3
+```
+
+
+
+# 4e Birth death model with constant speciation rate and exponential variation in extinction rate
+```{r}
+f.lamb_4e<-function(t,y){y[1]}
+f.mu_4e<-function(t,y){y[1]*exp(y[2]*t)}
+#
+lamb_par_4e<- c(0.1)
+mu_par_4e<- c(0.02,0.002)
+#
+result_bd_4e<- fit_bd(arbolE, tot_time, f.lamb_4e, f.mu_4e, lamb_par_4e, mu_par_4e, f=148/167, cst.lamb = TRUE, expo.mu = TRUE, dt=1e-3)
+#
+result_bd_4e
+```
+
+
+# 5e Birth-death model with exponential variation in speciation rate and constant extinction
+```{r}
+f.lamb_5e<-function(t,y){y[1] * exp(y[2] * t)}
+f.mu_5e<-function(t,y){y[1]}
+#
+lamb_par_5e <- c(0.05, 0.01)
+mu_par_5e <-c(0.005)
+#
+result_bd_5e<- fit_bd(arbolE, tot_time, f.lamb = f.lamb_5e, f.mu = f.mu_5e, lamb_par_5e, mu_par_5e, f=148/167, expo.lamb = TRUE, cst.mu = TRUE, dt=1e-3)
+#
+result_bd_5e
+```
+
+
+# 6e Birth-death model with exponential variation in speciation rate and exponential variation in extinction rate
+```{r}
+f.lamb_6e<-function(t,y){y[1] * exp(y[2] * t)}
+f.mu_6e<-function(t,y){y[1] * exp(y[2] * t)}
+#
+lamb_par_6e <- c(0.05, 0.01)
+mu_par_6e <-c(0.005, 0.001)
+#
+result_bd_6e<- fit_bd(arbolE, tot_time, f.lamb = f.lamb_6e, f.mu = f.mu_6e, lamb_par_6e, mu_par_6e, f=148/167, expo.lamb = TRUE, expo.mu = TRUE, dt=1e-3)
+#
+result_bd_6e
+```
+
+
+# Find the best model
+# todos los modelos
+```{r}
+aiclist<- setNames(c(result_pb_cst$aicc, result_pb_2e$aicc, result_bd_3$aicc, result_bd_4e$aicc, result_bd_5e$aicc, result_bd_6e$aicc), c("cst", "2e", "3", "4e", "5e", "6e"))
+#
+aic.w(aiclist)
+```
+
+
+
+
+### ---FIVETEEN
+
+# Tree
+```{r}
+arbolE<- read.nexus("t15.nex")
+```
+
+
+### Models to test
+## Pure birth models
+
+# 1 Pure birth model with constant speciation rate
+```{r}
+f.lamb_1<- function(t,y){y[1]}
+f.mu_1<- function(t,y){0}
+#
+lamb_par_1<-c(0.09)
+mu_par_1<-c()
+#
+result_pb_cst<-fit_bd(arbolE, tot_time, f.lamb = f.lamb_1, f.mu = f.mu_1, lamb_par_1, mu_par_1, f= 148/167, cst.lamb = TRUE, fix.mu = TRUE, dt=1e-3)
+#
+result_pb_cst
+```
+
+
+
+# 2e Pure birth model with exponential variation of the speciation rate with time
+```{r}
+f.lamb_2e<- function(t,y){y[1] * exp(y[2] * t)}
+f.mu_2e<- function(t,y){0}
+#
+lamb_par_2e<-c(0.09,0.02)
+mu_par_2e<-c()
+#
+result_pb_2e<-fit_bd(arbolE, tot_time, f.lamb = f.lamb_2e, f.mu = f.mu_2e, lamb_par_2e, mu_par_2e, f= 148/167, expo.lamb = TRUE, fix.mu = TRUE, dt=1e-3)
+#
+result_pb_2e
+```
+
+
+
+## Birth-death models
+
+# 3 Birth-death model with constant speciation rate and constant extinction
+```{r}
+f.lamb_3<-function(t,y){y[1]}
+f.mu_3<-function(t,y){y[1]}
+#
+lamb_par_3<-c(0.09)
+mu_par_3<-c(0.001)
+#
+result_bd_3<- fit_bd(arbolE, tot_time, f.lamb_3, f.mu_3, lamb_par_3, mu_par_3, f=148/167, cst.lamb = TRUE, cst.mu = TRUE, dt=1e-3)
+#
+result_bd_3
+```
+
+
+# 4e Birth death model with constant speciation rate and exponential variation in extinction rate
+```{r}
+f.lamb_4e<-function(t,y){y[1]}
+f.mu_4e<-function(t,y){y[1]*exp(y[2]*t)}
+#
+lamb_par_4e<- c(0.1)
+mu_par_4e<- c(0.02,0.002)
+#
+result_bd_4e<- fit_bd(arbolE, tot_time, f.lamb_4e, f.mu_4e, lamb_par_4e, mu_par_4e, f=148/167, cst.lamb = TRUE, expo.mu = TRUE, dt=1e-3)
+#
+result_bd_4e
+```
+
+
+# 5e Birth-death model with exponential variation in speciation rate and constant extinction
+```{r}
+f.lamb_5e<-function(t,y){y[1] * exp(y[2] * t)}
+f.mu_5e<-function(t,y){y[1]}
+#
+lamb_par_5e <- c(0.05, 0.01)
+mu_par_5e <-c(0.005)
+#
+result_bd_5e<- fit_bd(arbolE, tot_time, f.lamb = f.lamb_5e, f.mu = f.mu_5e, lamb_par_5e, mu_par_5e, f=148/167, expo.lamb = TRUE, cst.mu = TRUE, dt=1e-3)
+#
+result_bd_5e
+```
+
+
+# 6e Birth-death model with exponential variation in speciation rate and exponential variation in extinction rate
+```{r}
+f.lamb_6e<-function(t,y){y[1] * exp(y[2] * t)}
+f.mu_6e<-function(t,y){y[1] * exp(y[2] * t)}
+#
+lamb_par_6e <- c(0.05, 0.01)
+mu_par_6e <-c(0.005, 0.001)
+#
+result_bd_6e<- fit_bd(arbolE, tot_time, f.lamb = f.lamb_6e, f.mu = f.mu_6e, lamb_par_6e, mu_par_6e, f=148/167, expo.lamb = TRUE, expo.mu = TRUE, dt=1e-3)
+#
+result_bd_6e
+```
+
+
+
+# Find the best model
+# todos los modelos
+```{r}
+aiclist<- setNames(c(result_pb_cst$aicc, result_pb_2e$aicc, result_bd_3$aicc, result_bd_4e$aicc, result_bd_5e$aicc, result_bd_6e$aicc), c("cst", "2e", "3", "4e", "5e", "6e"))
+#
+aic.w(aiclist)
+```
+
+
+
+### ---SIXTEEN
+
+# Tree
+```{r}
+arbolE<- read.nexus("t16.nex")
+```
+
+
+### Models to test
+## Pure birth models
+
+# 1 Pure birth model with constant speciation rate
+```{r}
+f.lamb_1<- function(t,y){y[1]}
+f.mu_1<- function(t,y){0}
+#
+lamb_par_1<-c(0.09)
+mu_par_1<-c()
+#
+result_pb_cst<-fit_bd(arbolE, tot_time, f.lamb = f.lamb_1, f.mu = f.mu_1, lamb_par_1, mu_par_1, f= 148/167, cst.lamb = TRUE, fix.mu = TRUE, dt=1e-3)
+#
+result_pb_cst
+```
+
+
+# 2e Pure birth model with exponential variation of the speciation rate with time
+```{r}
+f.lamb_2e<- function(t,y){y[1] * exp(y[2] * t)}
+f.mu_2e<- function(t,y){0}
+#
+lamb_par_2e<-c(0.09,0.02)
+mu_par_2e<-c()
+#
+result_pb_2e<-fit_bd(arbolE, tot_time, f.lamb = f.lamb_2e, f.mu = f.mu_2e, lamb_par_2e, mu_par_2e, f= 148/167, expo.lamb = TRUE, fix.mu = TRUE, dt=1e-3)
+#
+result_pb_2e
+```
+
+
+## Birth-death models
+
+# 3 Birth-death model with constant speciation rate and constant extinction
+```{r}
+f.lamb_3<-function(t,y){y[1]}
+f.mu_3<-function(t,y){y[1]}
+#
+lamb_par_3<-c(0.09)
+mu_par_3<-c(0.001)
+#
+result_bd_3<- fit_bd(arbolE, tot_time, f.lamb_3, f.mu_3, lamb_par_3, mu_par_3, f=148/167, cst.lamb = TRUE, cst.mu = TRUE, dt=1e-3)
+#
+result_bd_3
+```
+
+
+# 4e Birth death model with constant speciation rate and exponential variation in extinction rate
+```{r}
+f.lamb_4e<-function(t,y){y[1]}
+f.mu_4e<-function(t,y){y[1]*exp(y[2]*t)}
+#
+lamb_par_4e<- c(0.1)
+mu_par_4e<- c(0.02,0.002)
+#
+result_bd_4e<- fit_bd(arbolE, tot_time, f.lamb_4e, f.mu_4e, lamb_par_4e, mu_par_4e, f=148/167, cst.lamb = TRUE, expo.mu = TRUE, dt=1e-3)
+#
+result_bd_4e
+```
+
+
+# 5e Birth-death model with exponential variation in speciation rate and constant extinction
+```{r}
+f.lamb_5e<-function(t,y){y[1] * exp(y[2] * t)}
+f.mu_5e<-function(t,y){y[1]}
+#
+lamb_par_5e <- c(0.05, 0.01)
+mu_par_5e <-c(0.005)
+#
+result_bd_5e<- fit_bd(arbolE, tot_time, f.lamb = f.lamb_5e, f.mu = f.mu_5e, lamb_par_5e, mu_par_5e, f=148/167, expo.lamb = TRUE, cst.mu = TRUE, dt=1e-3)
+#
+result_bd_5e
+```
+
+
+# 6e Birth-death model with exponential variation in speciation rate and exponential variation in extinction rate
+```{r}
+f.lamb_6e<-function(t,y){y[1] * exp(y[2] * t)}
+f.mu_6e<-function(t,y){y[1] * exp(y[2] * t)}
+#
+lamb_par_6e <- c(0.05, 0.01)
+mu_par_6e <-c(0.005, 0.001)
+#
+result_bd_6e<- fit_bd(arbolE, tot_time, f.lamb = f.lamb_6e, f.mu = f.mu_6e, lamb_par_6e, mu_par_6e, f=148/167, expo.lamb = TRUE, expo.mu = TRUE, dt=1e-3)
+#
+result_bd_6e
+```
+
+
+# Find the best model
+# todos los modelos
+```{r}
+aiclist<- setNames(c(result_pb_cst$aicc, result_pb_2e$aicc, result_bd_3$aicc, result_bd_4e$aicc, result_bd_5e$aicc, result_bd_6e$aicc), c("cst", "2e", "3", "4e", "5e", "6e"))
+#
+aic.w(aiclist)
+```
+
+
+### ---SEVENTEEN
+
+# Tree
+```{r}
+arbolE<- read.nexus("t17.nex")
+```
+
+
+### Models to test
+## Pure birth models
+
+# 1 Pure birth model with constant speciation rate
+```{r}
+f.lamb_1<- function(t,y){y[1]}
+f.mu_1<- function(t,y){0}
+#
+lamb_par_1<-c(0.09)
+mu_par_1<-c()
+#
+result_pb_cst<-fit_bd(arbolE, tot_time, f.lamb = f.lamb_1, f.mu = f.mu_1, lamb_par_1, mu_par_1, f= 148/167, cst.lamb = TRUE, fix.mu = TRUE, dt=1e-3)
+#
+result_pb_cst
+```
+
+
+# 2e Pure birth model with exponential variation of the speciation rate with time
+```{r}
+f.lamb_2e<- function(t,y){y[1] * exp(y[2] * t)}
+f.mu_2e<- function(t,y){0}
+#
+lamb_par_2e<-c(0.09,0.02)
+mu_par_2e<-c()
+#
+result_pb_2e<-fit_bd(arbolE, tot_time, f.lamb = f.lamb_2e, f.mu = f.mu_2e, lamb_par_2e, mu_par_2e, f= 148/167, expo.lamb = TRUE, fix.mu = TRUE, dt=1e-3)
+#
+result_pb_2e
+```
+
+
+
+## Birth-death models
+
+# 3 Birth-death model with constant speciation rate and constant extinction
+```{r}
+f.lamb_3<-function(t,y){y[1]}
+f.mu_3<-function(t,y){y[1]}
+#
+lamb_par_3<-c(0.09)
+mu_par_3<-c(0.001)
+#
+result_bd_3<- fit_bd(arbolE, tot_time, f.lamb_3, f.mu_3, lamb_par_3, mu_par_3, f=148/167, cst.lamb = TRUE, cst.mu = TRUE, dt=1e-3)
+#
+result_bd_3
+```
+
+
+# 4e Birth death model with constant speciation rate and exponential variation in extinction rate
+```{r}
+f.lamb_4e<-function(t,y){y[1]}
+f.mu_4e<-function(t,y){y[1]*exp(y[2]*t)}
+#
+lamb_par_4e<- c(0.1)
+mu_par_4e<- c(0.02,0.002)
+#
+result_bd_4e<- fit_bd(arbolE, tot_time, f.lamb_4e, f.mu_4e, lamb_par_4e, mu_par_4e, f=148/167, cst.lamb = TRUE, expo.mu = TRUE, dt=1e-3)
+#
+result_bd_4e
+```
+
+
+# 5e Birth-death model with exponential variation in speciation rate and constant extinction
+```{r}
+f.lamb_5e<-function(t,y){y[1] * exp(y[2] * t)}
+f.mu_5e<-function(t,y){y[1]}
+#
+lamb_par_5e <- c(0.05, 0.01)
+mu_par_5e <-c(0.005)
+#
+result_bd_5e<- fit_bd(arbolE, tot_time, f.lamb = f.lamb_5e, f.mu = f.mu_5e, lamb_par_5e, mu_par_5e, f=148/167, expo.lamb = TRUE, cst.mu = TRUE, dt=1e-3)
+#
+result_bd_5e
+```
+
+
+
+# 6e Birth-death model with exponential variation in speciation rate and exponential variation in extinction rate
+```{r}
+f.lamb_6e<-function(t,y){y[1] * exp(y[2] * t)}
+f.mu_6e<-function(t,y){y[1] * exp(y[2] * t)}
+#
+lamb_par_6e <- c(0.05, 0.01)
+mu_par_6e <-c(0.005, 0.001)
+#
+result_bd_6e<- fit_bd(arbolE, tot_time, f.lamb = f.lamb_6e, f.mu = f.mu_6e, lamb_par_6e, mu_par_6e, f=148/167, expo.lamb = TRUE, expo.mu = TRUE, dt=1e-3)
+#
+result_bd_6e
+```
+
+
+# Find the best model
+# todos los modelos
+```{r}
+aiclist<- setNames(c(result_pb_cst$aicc, result_pb_2e$aicc, result_bd_3$aicc, result_bd_4e$aicc, result_bd_5e$aicc, result_bd_6e$aicc), c("cst", "2e", "3", "4e", "5e", "6e"))
+#
+aic.w(aiclist)
+```
+
+
+### ---EIGHTEEN
+
+# Tree
+```{r}
+arbolE<- read.nexus("t18.nex")
+```
+
+
+### Models to test
+## Pure birth models
+
+# 1 Pure birth model with constant speciation rate
+```{r}
+f.lamb_1<- function(t,y){y[1]}
+f.mu_1<- function(t,y){0}
+#
+lamb_par_1<-c(0.09)
+mu_par_1<-c()
+#
+result_pb_cst<-fit_bd(arbolE, tot_time, f.lamb = f.lamb_1, f.mu = f.mu_1, lamb_par_1, mu_par_1, f= 148/167, cst.lamb = TRUE, fix.mu = TRUE, dt=1e-3)
+#
+result_pb_cst
+```
+
+
+# 2e Pure birth model with exponential variation of the speciation rate with time
+```{r}
+f.lamb_2e<- function(t,y){y[1] * exp(y[2] * t)}
+f.mu_2e<- function(t,y){0}
+#
+lamb_par_2e<-c(0.09,0.02)
+mu_par_2e<-c()
+#
+result_pb_2e<-fit_bd(arbolE, tot_time, f.lamb = f.lamb_2e, f.mu = f.mu_2e, lamb_par_2e, mu_par_2e, f= 148/167, expo.lamb = TRUE, fix.mu = TRUE, dt=1e-3)
+#
+result_pb_2e
+```
+
+
+
+## Birth-death models
+
+# 3 Birth-death model with constant speciation rate and constant extinction
+```{r}
+f.lamb_3<-function(t,y){y[1]}
+f.mu_3<-function(t,y){y[1]}
+#
+lamb_par_3<-c(0.09)
+mu_par_3<-c(0.001)
+#
+result_bd_3<- fit_bd(arbolE, tot_time, f.lamb_3, f.mu_3, lamb_par_3, mu_par_3, f=148/167, cst.lamb = TRUE, cst.mu = TRUE, dt=1e-3)
+#
+result_bd_3
+```
+
+
+# 4e Birth death model with constant speciation rate and exponential variation in extinction rate
+```{r}
+f.lamb_4e<-function(t,y){y[1]}
+f.mu_4e<-function(t,y){y[1]*exp(y[2]*t)}
+#
+lamb_par_4e<- c(0.1)
+mu_par_4e<- c(0.02,0.002)
+#
+result_bd_4e<- fit_bd(arbolE, tot_time, f.lamb_4e, f.mu_4e, lamb_par_4e, mu_par_4e, f=148/167, cst.lamb = TRUE, expo.mu = TRUE, dt=1e-3)
+#
+result_bd_4e
+```
+
+
+
+# 5e Birth-death model with exponential variation in speciation rate and constant extinction
+```{r}
+f.lamb_5e<-function(t,y){y[1] * exp(y[2] * t)}
+f.mu_5e<-function(t,y){y[1]}
+#
+lamb_par_5e <- c(0.05, 0.01)
+mu_par_5e <-c(0.005)
+#
+result_bd_5e<- fit_bd(arbolE, tot_time, f.lamb = f.lamb_5e, f.mu = f.mu_5e, lamb_par_5e, mu_par_5e, f=148/167, expo.lamb = TRUE, cst.mu = TRUE, dt=1e-3)
+#
+result_bd_5e
+```
+
+
+# 6e Birth-death model with exponential variation in speciation rate and exponential variation in extinction rate
+```{r}
+f.lamb_6e<-function(t,y){y[1] * exp(y[2] * t)}
+f.mu_6e<-function(t,y){y[1] * exp(y[2] * t)}
+#
+lamb_par_6e <- c(0.05, 0.01)
+mu_par_6e <-c(0.005, 0.001)
+#
+result_bd_6e<- fit_bd(arbolE, tot_time, f.lamb = f.lamb_6e, f.mu = f.mu_6e, lamb_par_6e, mu_par_6e, f=148/167, expo.lamb = TRUE, expo.mu = TRUE, dt=1e-3)
+#
+result_bd_6e
+```
+
+
+
+# Find the best model
+# todos los modelos
+```{r}
+aiclist<- setNames(c(result_pb_cst$aicc, result_pb_2e$aicc, result_bd_3$aicc, result_bd_4e$aicc, result_bd_5e$aicc, result_bd_6e$aicc), c("cst", "2e", "3", "4e", "5e", "6e"))
+#
+aic.w(aiclist)
+```
+
+
+### ---NINETEEN
+
+# Tree
+```{r}
+arbolE<- read.nexus("t19.nex")
+```
+
+
+### Models to test
+## Pure birth models
+
+# 1 Pure birth model with constant speciation rate
+```{r}
+f.lamb_1<- function(t,y){y[1]}
+f.mu_1<- function(t,y){0}
+#
+lamb_par_1<-c(0.09)
+mu_par_1<-c()
+#
+result_pb_cst<-fit_bd(arbolE, tot_time, f.lamb = f.lamb_1, f.mu = f.mu_1, lamb_par_1, mu_par_1, f= 148/167, cst.lamb = TRUE, fix.mu = TRUE, dt=1e-3)
+#
+result_pb_cst
+```
+
+
+# 2e Pure birth model with exponential variation of the speciation rate with time
+```{r}
+f.lamb_2e<- function(t,y){y[1] * exp(y[2] * t)}
+f.mu_2e<- function(t,y){0}
+#
+lamb_par_2e<-c(0.09,0.02)
+mu_par_2e<-c()
+#
+result_pb_2e<-fit_bd(arbolE, tot_time, f.lamb = f.lamb_2e, f.mu = f.mu_2e, lamb_par_2e, mu_par_2e, f= 148/167, expo.lamb = TRUE, fix.mu = TRUE, dt=1e-3)
+#
+result_pb_2e
+```
+
+
+## Birth-death models
+
+# 3 Birth-death model with constant speciation rate and constant extinction
+```{r}
+f.lamb_3<-function(t,y){y[1]}
+f.mu_3<-function(t,y){y[1]}
+#
+lamb_par_3<-c(0.09)
+mu_par_3<-c(0.001)
+#
+result_bd_3<- fit_bd(arbolE, tot_time, f.lamb_3, f.mu_3, lamb_par_3, mu_par_3, f=148/167, cst.lamb = TRUE, cst.mu = TRUE, dt=1e-3)
+#
+result_bd_3
+```
+
+
+# 4e Birth death model with constant speciation rate and exponential variation in extinction rate
+```{r}
+f.lamb_4e<-function(t,y){y[1]}
+f.mu_4e<-function(t,y){y[1]*exp(y[2]*t)}
+#
+lamb_par_4e<- c(0.1)
+mu_par_4e<- c(0.02,0.002)
+#
+result_bd_4e<- fit_bd(arbolE, tot_time, f.lamb_4e, f.mu_4e, lamb_par_4e, mu_par_4e, f=148/167, cst.lamb = TRUE, expo.mu = TRUE, dt=1e-3)
+#
+result_bd_4e
+```
+
+
+
+# 5e Birth-death model with exponential variation in speciation rate and constant extinction
+```{r}
+f.lamb_5e<-function(t,y){y[1] * exp(y[2] * t)}
+f.mu_5e<-function(t,y){y[1]}
+#
+lamb_par_5e <- c(0.05, 0.01)
+mu_par_5e <-c(0.005)
+#
+result_bd_5e<- fit_bd(arbolE, tot_time, f.lamb = f.lamb_5e, f.mu = f.mu_5e, lamb_par_5e, mu_par_5e, f=148/167, expo.lamb = TRUE, cst.mu = TRUE, dt=1e-3)
+#
+result_bd_5e
+```
+
+
+# 6e Birth-death model with exponential variation in speciation rate and exponential variation in extinction rate
+```{r}
+f.lamb_6e<-function(t,y){y[1] * exp(y[2] * t)}
+f.mu_6e<-function(t,y){y[1] * exp(y[2] * t)}
+#
+lamb_par_6e <- c(0.05, 0.01)
+mu_par_6e <-c(0.005, 0.001)
+#
+result_bd_6e<- fit_bd(arbolE, tot_time, f.lamb = f.lamb_6e, f.mu = f.mu_6e, lamb_par_6e, mu_par_6e, f=148/167, expo.lamb = TRUE, expo.mu = TRUE, dt=1e-3)
+#
+result_bd_6e
+```
+
+
+# Find the best model
+# todos los modelos
+```{r}
+aiclist<- setNames(c(result_pb_cst$aicc, result_pb_2e$aicc, result_bd_3$aicc, result_bd_4e$aicc, result_bd_5e$aicc, result_bd_6e$aicc), c("cst", "2e", "3", "4e", "5e", "6e"))
+#
+aic.w(aiclist)
+```
+
+
+### ---TWENTY
+
+# Tree
+```{r}
+arbolE<- read.nexus("t20.nex")
+```
+
+
+### Models to test
+## Pure birth models
+
+# 1 Pure birth model with constant speciation rate
+```{r}
+f.lamb_1<- function(t,y){y[1]}
+f.mu_1<- function(t,y){0}
+#
+lamb_par_1<-c(0.09)
+mu_par_1<-c()
+#
+result_pb_cst<-fit_bd(arbolE, tot_time, f.lamb = f.lamb_1, f.mu = f.mu_1, lamb_par_1, mu_par_1, f= 148/167, cst.lamb = TRUE, fix.mu = TRUE, dt=1e-3)
+#
+result_pb_cst
+```
+
+
+# 2e Pure birth model with exponential variation of the speciation rate with time
+```{r}
+f.lamb_2e<- function(t,y){y[1] * exp(y[2] * t)}
+f.mu_2e<- function(t,y){0}
+#
+lamb_par_2e<-c(0.09,0.02)
+mu_par_2e<-c()
+#
+result_pb_2e<-fit_bd(arbolE, tot_time, f.lamb = f.lamb_2e, f.mu = f.mu_2e, lamb_par_2e, mu_par_2e, f= 148/167, expo.lamb = TRUE, fix.mu = TRUE, dt=1e-3)
+#
+result_pb_2e
+```
+
+
+
+## Birth-death models
+
+# 3 Birth-death model with constant speciation rate and constant extinction
+```{r}
+f.lamb_3<-function(t,y){y[1]}
+f.mu_3<-function(t,y){y[1]}
+#
+lamb_par_3<-c(0.09)
+mu_par_3<-c(0.001)
+#
+result_bd_3<- fit_bd(arbolE, tot_time, f.lamb_3, f.mu_3, lamb_par_3, mu_par_3, f=148/167, cst.lamb = TRUE, cst.mu = TRUE, dt=1e-3)
+#
+result_bd_3
+```
+
+
+# 4e Birth death model with constant speciation rate and exponential variation in extinction rate
+```{r}
+f.lamb_4e<-function(t,y){y[1]}
+f.mu_4e<-function(t,y){y[1]*exp(y[2]*t)}
+#
+lamb_par_4e<- c(0.1)
+mu_par_4e<- c(0.02,0.002)
+#
+result_bd_4e<- fit_bd(arbolE, tot_time, f.lamb_4e, f.mu_4e, lamb_par_4e, mu_par_4e, f=148/167, cst.lamb = TRUE, expo.mu = TRUE, dt=1e-3)
+#
+result_bd_4e
+```
+
+
+
+# 5e Birth-death model with exponential variation in speciation rate and constant extinction
+```{r}
+f.lamb_5e<-function(t,y){y[1] * exp(y[2] * t)}
+f.mu_5e<-function(t,y){y[1]}
+#
+lamb_par_5e <- c(0.05, 0.01)
+mu_par_5e <-c(0.005)
+#
+result_bd_5e<- fit_bd(arbolE, tot_time, f.lamb = f.lamb_5e, f.mu = f.mu_5e, lamb_par_5e, mu_par_5e, f=148/167, expo.lamb = TRUE, cst.mu = TRUE, dt=1e-3)
+#
+result_bd_5e
+```
+
+
+# 6e Birth-death model with exponential variation in speciation rate and exponential variation in extinction rate
+```{r}
+f.lamb_6e<-function(t,y){y[1] * exp(y[2] * t)}
+f.mu_6e<-function(t,y){y[1] * exp(y[2] * t)}
+#
+lamb_par_6e <- c(0.05, 0.01)
+mu_par_6e <-c(0.005, 0.001)
+#
+result_bd_6e<- fit_bd(arbolE, tot_time, f.lamb = f.lamb_6e, f.mu = f.mu_6e, lamb_par_6e, mu_par_6e, f=148/167, expo.lamb = TRUE, expo.mu = TRUE, dt=1e-3)
+#
+result_bd_6e
+```
+
+
+# Find the best model
+# todos los modelos
+```{r}
+aiclist<- setNames(c(result_pb_cst$aicc, result_pb_2e$aicc, result_bd_3$aicc, result_bd_4e$aicc, result_bd_5e$aicc, result_bd_6e$aicc), c("cst", "2e", "3", "4e", "5e", "6e"))
+#
+aic.w(aiclist)
+```
+
+
