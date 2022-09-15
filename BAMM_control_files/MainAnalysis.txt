@@ -16,7 +16,7 @@
 modeltype = speciationextinction
 # Specify "speciationextinction" or "trait" analysis
                                   
-treefile = arbol.tre
+treefile = MCCT_Eleutherodactylus.nex
 # File name of the phylogenetic tree to be analyzed
 
 runInfoFilename = run_info2.txt
