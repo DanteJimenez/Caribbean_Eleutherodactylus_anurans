@@ -10,7 +10,7 @@ output:
 # Directorio de trabajo
 
 ```{r}
-setwd("C:/Users/Alejandro/Google Drive/Doctorado/Data 3")
+#setwd...
 ```
 
 
